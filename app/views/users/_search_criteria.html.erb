@@ -1,0 +1,58 @@
+         <div id="div_friends_list" class="resources">
+                  <%= render 'users/list' %>
+               
+              </div>
+              <h4 class="text-center">
+                 <div id="loading_page" class="center_block active_hide loading_page" ><img src="/assets/loading.gif">
+                 </div>
+              </h4>
+          
+<script type="text/javascript">
+var currentPage_friends = 1;
+var intervalID = 1;
+var insideLoop ="false"; 
+
+function checkScroll_friends() {
+  if (nearBottomOfPage() && insideLoop!="true" ) {
+        insideLoop ="true";
+        currentPage_friends++;
+      $('.loading_page').show();
+          if($('#div_friends_list').length == 0){
+          $('.loading_page').hide();
+          clearInterval(intervalID);
+          for (var i = 1; i < 99999; i++){
+             window.clearInterval(i);
+          }
+          insideLoop = "false";
+          return;
+        }
+        jQuery.ajax('/users/page_search_criteria?page=' + currentPage_friends , {asynchronous:true, evalScripts:true, method:'get', success: function(data, textStatus, jqXHR) {
+        $('#div_friends_list').append($(data).find('.paginate_do').html());
+        $('.loading_page').hide();
+        if($(data).find('.paginate_do').html()==null || $(data).find('.paginate_do').html().trim()==""){
+          clearInterval(intervalID);
+          for (var i = 1; i < 99999; i++){
+             window.clearInterval(i);
+          }
+        }
+        insideLoop = "false";
+      },});
+  }
+}
+ 
+function nearBottomOfPage() {
+  return scrollDistanceFromBottom() < 500;
+}
+ 
+function scrollDistanceFromBottom(argument) {
+  return pageHeight() - (window.pageYOffset + self.innerHeight);
+}
+ 
+function pageHeight() {
+  return Math.max(document.body.scrollHeight, document.body.offsetHeight);
+}
+ 
+$('document').ready(function(){
+  intervalID = setInterval(checkScroll_friends, 500);
+});
+</script>

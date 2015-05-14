@@ -1,0 +1,21 @@
+ <% unless @uniq_badges.blank? %>
+ <div class="">
+ 	<ul class="list-group mb0">
+ 	<% @all_badges.each do |k, v| %>
+       	<li class="list-group-item">
+ 		<img src='<%= cloudinary_url( 'crushlike_uvxp3c', :width => 25, :height => 25, :crop => :fit) %>'>
+		   <%= "#{k}"  %>
+
+		   <span class="badge icon-bg-yellow">
+				<%= "#{v}"  %>
+		   </span>
+		   	<% if !@my_badges.blank? && @my_badges.include?("#{k}")  %>
+		   		<i class="ico-heart icon-red-lite mr10 pull-right font-18"></i>
+		   	<% end %>
+		</li>
+	 <% end %>
+	</ul>
+ </div>
+ <% else %>
+ 	No badges
+ <% end %>

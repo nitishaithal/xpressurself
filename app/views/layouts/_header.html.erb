@@ -1,0 +1,406 @@
+              <!-- START Template Header -->
+        <header id="header" class="navbar navbar-fixed-top">
+            <!-- START navbar header -->
+            <div class="navbar-header">
+                <!-- Brand -->
+                <a class="navbar-brand" href="javascript:void(0);">
+                    <span class="logo-figure"></span>
+                    <span class="logo-text"></span>
+                </a>
+                <!--/ Brand -->
+            </div>
+            <!--/ END navbar header -->
+
+            <!-- START Toolbar -->
+            <div class="navbar-toolbar clearfix">
+                <!-- START Left nav -->
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- Sidebar shrink -->
+                    <li class="hidden-xs hidden-sm">
+                        <a href="javascript:void(0);" class="sidebar-minimize" data-toggle="minimize" title="Minimize sidebar">
+                            <span class="meta">
+                                <span class="icon"></span>
+                            </span>
+                        </a>
+                    </li>
+                    <!--/ Sidebar shrink -->
+
+                    <!-- Offcanvas left: This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
+                    <li class="navbar-main hidden-lg hidden-md hidden-sm">
+                        <a href="javascript:void(0);" data-toggle="sidebar" data-direction="ltr" rel="tooltip" title="Menu sidebar">
+                            <span class="meta">
+                                <span class="icon"><i class="ico-paragraph-justify3"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                    <!--/ Offcanvas left -->
+
+                    <!-- Message dropdown -->
+                    <li class="dropdown custom" id="header-dd-message">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="meta">
+                                <span class="icon"><i class="ico-bubbles3"></i></span>
+                            </span>
+                        </a>
+
+                        <!-- mustache template: used for update the `.media-list` requested from server-side -->
+                        <script class="mustache-template" type="x-tmpl-mustache">
+                        
+                            {{#data}}
+                            <a href="page-message-rich.html" class="media border-dotted new">
+                                <span class="pull-left">
+                                    <img src="/assets/avatar/{{picture}}" class="media-object img-circle" alt="">
+                                </span>
+                                <span class="media-body">
+                                    <span class="media-heading">{{name}}</span>
+                                    <span class="media-text ellipsis nm">{{text}}</span>
+
+                                    {{#meta.star}}<span class="media-meta"><i class="ico-star3"></i></span>{{/meta.star}}
+                                    {{#meta.reply}}<span class="media-meta"><i class="ico-reply"></i></span>{{/meta.reply}}
+                                    {{#meta.attachment}}<span class="media-meta"><i class="ico-attachment"></i></span>{{/meta.attachment}}
+                                    <span class="media-meta pull-right">{{meta.time}}</span>
+                                </span>
+                            </a>
+                            {{/data}}
+                        
+                        </script>
+                        <!--/ mustache template -->
+
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-header">
+                                <span class="title">Messages <span class="count"></span></span>
+                                <span class="option text-right"><a href="javascript:void(0);">New message</a></span>
+                            </div>
+                            <div class="dropdown-body slimscroll">
+                                <!-- Search form -->
+                                <form class="form-horizontal" action="">
+                                    <div class="has-icon">
+                                        <input type="text" class="form-control" placeholder="Search message...">
+                                        <i class="ico-search form-control-icon"></i>
+                                    </div>
+                                </form>
+                                <!--/ Search form -->
+
+                                <!-- indicator -->
+                                <div class="indicator inline"><span class="spinner"></span></div>
+                                <!--/ indicator -->
+
+                                <!-- Message list -->
+                                <div class="media-list">
+                                    <a href="page-message-rich.html" class="media border-dotted read">
+                                        <span class="pull-left">
+                                            <img src="/assets/avatar/avatar1.jpg" class="media-object img-circle" alt="">
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-heading">Martina Poole</span>
+                                            <span class="media-text ellipsis nm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta"><i class="ico-reply"></i></span>
+                                            <span class="media-meta"><i class="ico-attachment"></i></span>
+                                            <span class="media-meta pull-right">20m</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="page-message-rich.html" class="media border-dotted read">
+                                        <span class="pull-left">
+                                            <img src="/assets/avatar/avatar3.jpg" class="media-object img-circle" alt="">
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-heading">Walter Foster</span>
+                                            <span class="media-text ellipsis nm">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta"><i class="ico-attachment"></i></span>
+                                            <span class="media-meta pull-right">21h</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="page-message-rich.html" class="media border-dotted read">
+                                        <span class="pull-left">
+                                            <img src="/assets/avatar/avatar4.jpg" class="media-object img-circle" alt="">
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-heading">Callum Santosr</span>
+                                            <span class="media-text ellipsis nm">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta pull-right">1d</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="page-message-rich.html" class="media border-dotted read">
+                                        <span class="pull-left">
+                                            <img src="/assets/avatar/avatar5.jpg" class="media-object img-circle" alt="">
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-heading">Noelani Blevins</span>
+                                            <span class="media-text ellipsis nm">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta pull-right">2d</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="page-message-rich.html" class="media border-dotted read">
+                                        <span class="pull-left">
+                                            <img src="/assets/avatar/avatar8.jpg" class="media-object img-circle" alt="">
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-heading">Carl Johnson</span>
+                                            <span class="media-text ellipsis nm">Curabitur consequat, lectus sit amet luctus vulputate, nisi sem</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta"><i class="ico-attachment"></i></span>
+                                            <span class="media-meta pull-right">2w</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="page-message-rich.html" class="media border-dotted read">
+                                        <span class="pull-left">
+                                            <img src="/assets/avatar/avatar9.jpg" class="media-object img-circle" alt="">
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-heading">Tamara Moon</span>
+                                            <span class="media-text ellipsis nm">Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta"><i class="ico-attachment"></i></span>
+                                            <span class="media-meta pull-right">2w</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+                                </div>
+                                <!--/ Message list -->
+                            </div>
+                        </div>
+                        <!--/ Dropdown menu -->
+                    </li>
+                    <!--/ Message dropdown -->
+
+                    <!-- Notification dropdown -->
+                    <li class="dropdown custom" id="header-dd-notification">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="meta">
+                                <span class="icon"><i class="ico-bell"></i></span>
+                                <span class="hasnotification hasnotification-danger"></span>
+                            </span>
+                        </a>
+
+                        <!-- mustache template: used for update the `.media-list` requested from server-side -->
+                        <script class="mustache-template" type="x-tmpl-mustache">
+                        
+                            {{#data}}
+                            <a href="javascript:void(0);" class="media border-dotted new">
+                                <span class="media-object pull-left">
+                                    <i class="{{icon}}"></i>
+                                </span>
+                                <span class="media-body">
+                                    <span class="media-text">{{{text}}}</span>
+                                    <span class="media-meta pull-right">{{meta.time}}</span>
+                                </span>
+                            </a>
+                            {{/data}}
+                        
+                        </script>
+                        <!--/ mustache template -->
+
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-header">
+                                <span class="title">Notification <span class="count"></span></span>
+                                <span class="option text-right"><a href="javascript:void(0);">Clear all</a></span>
+                            </div>
+                            <div class="dropdown-body slimscroll">
+                                <!-- indicator -->
+                                <div class="indicator inline"><span class="spinner"></span></div>
+                                <!--/ indicator -->
+
+                                <!-- Message list -->
+                                <div class="media-list">
+                                    <a href="javascript:void(0);" class="media read border-dotted">
+                                        <span class="media-object pull-left">
+                                            <i class="ico-basket2 bgcolor-info"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-text">Duis aute irure dolor in <span class="text-primary semibold">reprehenderit</span> in voluptate.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta pull-right">2d</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="javascript:void(0);" class="media read border-dotted">
+                                        <span class="media-object pull-left">
+                                            <i class="ico-call-incoming"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-text">Aliquip ex ea commodo consequat.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta pull-right">1w</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="javascript:void(0);" class="media read border-dotted">
+                                        <span class="media-object pull-left">
+                                            <i class="ico-alarm2"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-text">Excepteur sint <span class="text-primary semibold">occaecat</span> cupidatat non.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta pull-right">12w</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+
+                                    <a href="javascript:void(0);" class="media read border-dotted">
+                                        <span class="media-object pull-left">
+                                            <i class="ico-checkmark3 bgcolor-success"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="media-text">Lorem ipsum dolor sit amet, <span class="text-primary semibold">consectetur</span> adipisicing elit.</span>
+                                            <!-- meta icon -->
+                                            <span class="media-meta pull-right">14w</span>
+                                            <!--/ meta icon -->
+                                        </span>
+                                    </a>
+                                </div>
+                                <!--/ Message list -->
+                            </div>
+                        </div>
+                        <!--/ Dropdown menu -->
+                    </li>
+                    <!--/ Notification dropdown -->
+
+                    <!-- Search form toggler  -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="dropdown" data-target="#dropdown-form">
+                            <span class="meta">
+                                <span class="icon"><i class="ico-search"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                    <!--/ Search form toggler -->
+                </ul>
+                <!--/ END Left nav -->
+
+                <!-- START navbar form -->
+                <div class="navbar-form navbar-left dropdown" id="dropdown-form">
+                    
+                        <div class="has-icon">
+                            <button class="btn btn-teal mt0 mb0 form-control-btn btn-outline" data-toggle="modal" data-target="#search_modal">Criteria</button>
+                            <input type="text" class="form-control" placeholder="Search application...">
+                            
+                            <i class="ico-search form-control-icon"></i>
+                        </div>
+                                        <!-- search modal -->
+                </div>
+                <!-- START navbar form -->
+
+                <!-- START Right nav -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Profile dropdown -->
+                    <li class="dropdown profile">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="meta">
+                                <span class="avatar"><img src="<%= cloudinary_url( current_user.default_pic, :width => 30, :height => 30, :crop => :fill, :gravity => :faces) %>" class="img-circle" alt="" /></span>
+                                <span class="text hidden-xs hidden-sm pl5"><%= current_user.name %></span>
+                                <span class="caret"></span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="pa15">
+                                <h5 class="semibold hidden-xs hidden-sm">
+                                    <p class="nm">60%</p>
+                                    <small class="text-muted">Profile complete</small>
+                                </h5>
+                                <h5 class="semibold hidden-md hidden-lg">
+                                    <p class="nm"><%= current_user.name %></p>
+                                    <small class="text-muted">60% Profile complete</small>
+                                </h5>
+                                <div class="progress progress-xs nm mt10">
+                                    <div class="progress-bar progress-bar-warning" style="width: 60%">
+                                        <span class="sr-only">60% Complete</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0);"><span class="icon"><i class="ico-user-plus2"></i></span> My Accounts</a></li>
+                            <li><a href="javascript:void(0);"><span class="icon"><i class="ico-cog4"></i></span> Profile Setting</a></li>
+                            <li><a href="javascript:void(0);"><span class="icon"><i class="ico-question"></i></span> Help</a></li>
+                            <li class="divider"></li>
+                            <li data-no-turbolink><a href="<%= signout_path %>" id="fb_signout" class="sign_out_fb" ><span class="icon"><i class="ico-exit"></i></span> Sign Out</a></li>
+                        </ul>
+                    </li>
+                    <!-- Profile dropdown -->
+
+                    <!-- Offcanvas right This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
+                    <li class="navbar-main dis-none-imp">
+                        <a href="javascript:void(0);" data-toggle="sidebar" data-direction="rtl" rel="tooltip" title="Feed / contact sidebar">
+                            <span class="meta">
+                                <span class="icon"><i class="ico-users3"></i></span>
+                            </span>
+                        </a>
+                    </li>
+                    <!--/ Offcanvas right -->
+                </ul>
+                <!--/ END Right nav -->
+            </div>
+            <!--/ END Toolbar -->
+        </header>
+        <!--/ END Template Header -->
+       
+          <%= form_for([:search_criteria, current_user] , remote: true,  method: :get)  do %>
+            <!-- START modal-lg -->
+                <div id="search_modal" class="modal fade">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                  <h3 class="semibold modal-title text-primary">Search criteria</h3>
+                                <p class="text-muted">Set the criteria to search</p>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Gender</label>
+                                        <div class="col-sm-9">
+                                            <span class="radio custom-radio custom-radio-primary">  
+                                                <input type="radio" id="genderradio1" value="male" name="gender">  
+                                                <label for="genderradio1">&nbsp;&nbsp;Male</label>   
+                                            </span>
+                                            <span class="radio custom-radio custom-radio-primary">  
+                                                <input type="radio" id="genderradio2" value="female" name="gender">  
+                                                <label for="genderradio2">&nbsp;&nbsp;Female</label>   
+                                            </span>
+                                        </div>
+                                    </div>
+                                <h4 class="semibold mt0">Gender:</h4>
+                                    <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'male' %> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                      <%= check_box_tag 'female' %> Female </h5>
+                <h4>Location:</h4>
+                  <ul>
+                    <% current_user.places.each do |location| %>
+                      <li class="no-decor">
+                      <%= check_box_tag 'location_ids[]', location.address %>
+                      <%= h location.address -%>
+                      </li>
+                    <% end %>
+                  </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="search_submit">Search</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                <!--/ END modal-lg -->
+
+              <% end %>
+
+
+<script type="text/javascript">
+$('input[type="submit"]').click(function(){
+  $(this).button('loading');
+});
+</script>

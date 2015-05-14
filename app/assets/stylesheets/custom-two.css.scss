@@ -1,0 +1,321 @@
+.pull-right{
+    float: right;
+}
+.pull-left{
+    float: left;
+}
+
+
+
+.center_block {
+    display:inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  //autocomplete
+  /* highlight results */
+.ui-autocomplete span.hl_results {
+    background-color: #ffff66;
+    z-index: 1100!important;
+}
+ 
+/* loading - the AJAX indicator */
+.ui-autocomplete-loading {
+    background: white url('/assets/loading.gif') right center no-repeat;
+}
+ 
+/* scroll results */
+.ui-autocomplete {
+    max-height: 250px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding for vertical scrollbar */
+    padding-right: 5px;
+    z-index: 1100!important;
+}
+ 
+.ui-autocomplete li {
+    font-size: 16px;
+    z-index: 1100!important;
+}
+
+.ui-autocomplete li.ui-state-focus {
+  background : #00b6ad !important;
+  color : #ffffff !important;
+}
+ 
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+    height: 250px;
+}
+
+.no-padding{
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+.margin-left-right-25{
+ margin-left: 25px;
+ margin-right: 25px; 
+}
+
+.no-decor{
+  list-style-type:none;
+}
+
+/* Like Ribbon Big */
+
+
+
+.ribbon-container {
+position: absolute;
+top: 15px;
+right: 0px;
+overflow: visible; /* so we can see the pseudo-elements we're going to add to the anchor */
+font-size: 18px; /* font-size and line-height must be equal so we can account for the height of the banner */
+line-height: 18px;
+}
+
+.ribbon-container:before {
+content:"";
+height: 0;
+width: 0;
+display: block;
+position: absolute;
+top: 3px;
+left: 0;
+border-top: 29px solid rgba(0,0,0,.3); /* These 4 border properties create the first part of our drop-shadow */
+border-bottom: 29px solid rgba(0,0,0,.3); 
+border-right: 29px solid rgba(0,0,0,.3);
+border-left: 29px solid transparent;
+}
+
+.ribbon-container:after { /* This adds the second part of our dropshadow */
+content:"";
+height: 3px;
+background: rgba(0,0,0,.3);
+display: block;
+position: absolute;
+bottom: -3px;
+left: 58px;
+right:3px;
+}
+
+.ribbon-container a {
+display:block;
+padding:20px;
+position:relative; /* allows us to position our pseudo-elements properly */
+background:#0089d0;
+overflow:visible;
+height:58px;
+margin-left:29px;
+color:#fff;
+text-decoration:none;
+}
+
+.ribbon-container a:after { /* this creates the "folded" part of our ribbon */
+content:""; 
+height: 0;
+width: 0;
+display:block;
+position:absolute;
+bottom:-15px;
+right:0;
+border-top: 15px solid #004a70; 
+border-right: 15px solid transparent;
+}
+
+.ribbon-container a:before { /* this creates the "forked" part of our ribbon */
+content:"";
+height: 0;
+width: 0;
+display:block;
+position:absolute;
+top:0;
+left:-29px;
+border-top: 29px solid #0089d0; 
+border-bottom: 29px solid #0089d0; 
+border-right: 29px solid transparent;
+border-left: 29px solid transparent;
+}
+
+.ribbon-container a:hover {
+background:#009ff1;
+}
+
+.ribbon-container a:hover:before { /* this makes sure that the "forked" part of the ribbon changes color with the anchor on :hover */
+border-top: 29px solid #009ff1; 
+border-bottom: 29px solid #009ff1;
+}
+
+/* Like Ribbon Small */
+
+
+
+.ribbon-container-sm {
+position: absolute;
+top: 15px;
+right: 0px;
+overflow: visible; /* so we can see the pseudo-elements we're going to add to the anchor */
+font-size: 12px; /* font-size and line-height must be equal so we can account for the height of the banner */
+line-height: 12px;
+}
+
+.ribbon-container-sm:before {
+content:"";
+height: 0;
+width: 0;
+display: block;
+position: absolute;
+top: 3px;
+left: 0;
+border-top: 15px solid rgba(0,0,0,.3); /* These 4 border properties create the first part of our drop-shadow */
+border-bottom: 15px solid rgba(0,0,0,.3); 
+border-right: 15px solid rgba(0,0,0,.3);
+border-left: 15px solid transparent;
+}
+
+.ribbon-container-sm:after { /* This adds the second part of our dropshadow */
+content:"";
+height: 3px;
+background: rgba(0,0,0,.3);
+display: block;
+position: absolute;
+bottom: -3px;
+left: 28px;
+right:3px;
+}
+
+.ribbon-container-sm a {
+display:block;
+padding:10px;
+position:relative; /* allows us to position our pseudo-elements properly */
+background:#0089d0;
+overflow:visible;
+height:30px;
+margin-left:15px;
+color:#fff;
+text-decoration:none;
+}
+
+.ribbon-container-sm a:after { /* this creates the "folded" part of our ribbon */
+content:""; 
+height: 0;
+width: 0;
+display:block;
+position:absolute;
+bottom:-15px;
+right:0;
+border-top: 15px solid #004a70; 
+border-right: 15px solid transparent;
+}
+
+.ribbon-container-sm a:before { /* this creates the "forked" part of our ribbon */
+content:"";
+height: 0;
+width: 0;
+display:block;
+position:absolute;
+top:0;
+left:-15px;
+border-top: 15px solid #0089d0; 
+border-bottom: 15px solid #0089d0; 
+border-right: 15px solid transparent;
+border-left: 15px solid transparent;
+}
+
+.ribbon-container-sm a:hover {
+background:#009ff1;
+}
+
+.ribbon-container-sm a:hover:before { /* this makes sure that the "forked" part of the ribbon changes color with the anchor on :hover */
+border-top: 15px solid #009ff1; 
+border-bottom: 15px solid #009ff1;
+}
+
+/* Liked Ribbon Small */
+
+.ribbon-container-sm-liked {
+position: absolute;
+top: 15px;
+right: 0px;
+overflow: visible; /* so we can see the pseudo-elements we're going to add to the anchor */
+font-size: 12px; /* font-size and line-height must be equal so we can account for the height of the banner */
+line-height: 12px;
+}
+
+.ribbon-container-sm-liked:before {
+content:"";
+height: 0;
+width: 0;
+display: block;
+position: absolute;
+top: 3px;
+left: 0;
+border-top: 15px solid rgba(0,0,0,.3); /* These 4 border properties create the first part of our drop-shadow */
+border-bottom: 15px solid rgba(0,0,0,.3); 
+border-right: 15px solid rgba(0,0,0,.3);
+border-left: 15px solid transparent;
+}
+
+.ribbon-container-sm-liked:after { /* This adds the second part of our dropshadow */
+content:"";
+height: 3px;
+background: rgba(0,0,0,.3);
+display: block;
+position: absolute;
+bottom: -3px;
+left: 28px;
+right:3px;
+}
+
+.ribbon-container-sm-liked a {
+display:block;
+padding:10px;
+position:relative; /* allows us to position our pseudo-elements properly */
+background:#2EA124;
+overflow:visible;
+height:30px;
+margin-left:15px;
+color:#fff;
+text-decoration:none;
+}
+
+.ribbon-container-sm-liked a:after { /* this creates the "folded" part of our ribbon */
+content:""; 
+height: 0;
+width: 0;
+display:block;
+position:absolute;
+bottom:-15px;
+right:0;
+border-top: 15px solid #092007; 
+border-right: 15px solid transparent;
+}
+
+.ribbon-container-sm-liked a:before { /* this creates the "forked" part of our ribbon */
+content:"";
+height: 0;
+width: 0;
+display:block;
+position:absolute;
+top:0;
+left:-15px;
+border-top: 15px solid #2EA124; 
+border-bottom: 15px solid #2EA124; 
+border-right: 15px solid transparent;
+border-left: 15px solid transparent;
+}
+
+.ribbon-container-sm-liked a:hover {
+background:#42aa39;
+}
+
+.ribbon-container-sm-liked a:hover:before { /* this makes sure that the "forked" part of the ribbon changes color with the anchor on :hover */
+border-top: 15px solid #42aa39; 
+border-bottom: 15px solid #42aa39;
+}

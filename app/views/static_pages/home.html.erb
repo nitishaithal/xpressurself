@@ -1,0 +1,231 @@
+<% if signed_in? %>
+<% provide(:title, current_user.name) %>
+  <%= render 'users/show' %>
+<% else %>
+<% provide(:title, 'Home') %>
+
+
+<div class="frontend">
+<!-- START Template Header -->
+        <header id="header" class="navbar navbar-fixed-top">
+            <div class="container">
+                <!-- START navbar header -->
+                <div class="navbar-header">
+                    <!-- Brand -->
+                    <a class="navbar-brand" href="javascript:void(0);">
+                        <span class="logo-figure" style="margin-left:-4px;"></span>
+                        <span class="logo-text"></span>
+                    </a>
+                    <!--/ Brand -->
+                </div>
+                <!--/ END navbar header -->
+            </div>
+        </header>
+        <!--/ END Template Header -->
+
+        <!-- START Template Main -->
+        <section id="main" role="main">
+            <!-- START jumbotron -->
+            <section class="jumbotron jumbotron-bg7 nm" data-stellar-background-ratio="0.4" style="min-height:486px;">
+                <!-- pattern + overlay -->
+                <div class="overlay pattern pattern2"></div>
+                <!--/ pattern + overlay -->
+                <div class="container" style="padding-top:14%;">
+                    <div class="row">
+                        <div class="col-md-6 ml15">
+                            <h1 class="thin text-white font-alt mt0 mb5">Open up yourself </h1>
+                            <p class="text-white fsize14">
+                                Meet new people around you, get to know them better.<br>
+                                Let them know your feelings for them...
+                            </p>
+                            <h4 class="mt0 dis-none"><a href="javascript:void(0);">Learn More...</a></h4>
+                        </div>
+                        <div class="col-md-4 ml15">
+                            <form role="form">
+                                <div class="dis-none mt15">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-lg" id="signup_username" placeholder="Pick a username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-lg" id="signup_email" placeholder="Your email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control input-lg" id="signup_password" placeholder="Create a password">
+                                        <span class="help-block text-muted">Use at least one lowercase letter, one numeral, and seven characters.</span>
+                                    </div>
+                                </div>
+                                <div class="mt15 mb15"></div>
+                                <button type="button" class="btn btn-facebook btn-block btn-lg mt15 ml15" id="fb_login" ><i class="ico-facebook22 mr15"></i> Login with facebook </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--/ END jumbotron -->
+
+            <!-- START Features Section -->
+            <section class="section bgcolor-white">
+                <div class="container">
+                    <!-- Header -->
+                    <div class="section-header text-center">
+                        <h2 class="section-title">
+                            <p class="font-alt nm">Awesome Features</p>
+                            <small class="text-muted">List of <span class="semibold text-default">Crush Like</span> feature sets that will blow up your mind.</small>
+                        </h2>
+                    </div>
+                    <!--/ Header -->
+                    <!-- START row -->
+                    <div class="table-layout">
+                        <div class="col-md-4">
+                            <div class="table-layout animation" data-toggle="waypoints" data-showanim="fadeInRight" data-trigger-once="true">
+                                <div class="col-xs-2 valign-top"><img src="/assets/icons/onlinepresencemanagement.png" width="100%" alt=""></div>
+                                <div class="col-xs-19 pl15">
+                                    <h4 class="font-alt">Login with Facebook</h4>
+                                    <p class="nm">Just login with your facebook credentials, No signup required.</p>
+                                </div>
+                            </div>
+                            <div class="table-layout animation" data-toggle="waypoints" data-showanim="fadeInRight" data-trigger-once="true">
+                                <div class="col-xs-2 valign-top"><img src="/assets/icons/landingpageoptimization.png" width="100%" alt=""></div>
+                                <div class="col-xs-10 pl15">
+                                    <h4 class="font-alt">Set your profile</h4>
+                                    <p class="nm">Setup your profile and add places to find people around.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 pt15 text-center animation" data-toggle="waypoints" data-showanim="flipInY" data-trigger-once="true" data-offset="40%">
+                            <img src="/assets/mockup/iphone-5s.png">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="table-layout text-right animation" data-toggle="waypoints" data-showanim="fadeInLeft" data-trigger-once="true">
+                                <div class="col-xs-10 pr15">
+                                    <h4 class="font-alt">Find people</h4>
+                                    <p class="nm">Search for people around you to express your feelings.</p>
+                                </div>
+                                <div class="col-xs-2 valign-top"><img src="/assets/icons/localseo.png" width="99%" alt=""></div>
+                            </div>
+                            <div class="table-layout text-right animation" data-toggle="waypoints" data-showanim="fadeInLeft" data-trigger-once="true">
+                                <div class="col-xs-10 pr15">
+                                    <h4 class="font-alt">Express yourself</h4>
+                                    <p class="nm">Express your feelings, this is much easier here. You might be suprised to find out who all are/were interested in you.</p>
+                                </div>
+                                <div class="col-xs-2 valign-top"><img src="/assets/icons/socialengagement.png" width="100%" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ END row -->
+                </div>
+            </section>
+            <!--/ END Features Section -->
+
+            
+
+            <!-- START Testimonials section + jumbotron -->
+            <section class="jumbotron jumbotron-bg6 nm">
+                <div class="section">
+                    <!-- pattern + overlay -->
+                    <div class="overlay pattern pattern10"></div>
+                    <!-- pattern + overlay -->
+                    <div class="container">
+                        <!-- Header -->
+                        <div class="section-header text-center">
+                            <h2 class="section-title">
+                                <div class="font-alt nm">Thoughts to share</div>
+                                <small> This is the place to share your Feelings</small>
+                            </h2>
+                        </div>
+                        <!--/ Header -->
+                        <!-- START row -->
+                        <div class="row">
+                            <!-- example 1 -->
+                            <div class="col-sm-8 col-sm-offset-2 owl-carousel" id="customer-reviews">
+                                <!-- review #1 -->
+                                <div class="item text-center pt5">
+                                    <blockquote class="nm">
+                                        <p>My feelings are too loud for words and too shy for the world.</p>
+                                        <footer class="text-white">Dejan Stojanovic</footer>
+                                    </blockquote>
+                                </div>
+                                <!--/ review #1 -->
+                                <!-- review #2 -->
+                                <div class="item text-center pt5">
+                                    <blockquote class="nm">
+                                        <p>The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart.</p>
+                                        <footer class="text-white">Helen Keller</footer>
+                                    </blockquote>
+                                </div>
+                                <!--/ review #2 -->
+                                <!-- review #3 -->
+                                <div class="item text-center pt5">
+                                    <blockquote class="nm">
+                                        <p>Is it really possible to tell someone else what one feels?</p>
+                                        <footer class="text-white"> Leo Tolstoy, Anna Karenina</footer>
+                                    </blockquote>
+                                </div>
+                                <!--/ review #3 -->
+                                <!-- review #4 -->
+                                <div class="item text-center pt5">
+                                    <blockquote class="nm">
+                                        <p>Friendship is far more tragic than love. It lasts longer.</p>
+                                        <footer class="text-white"> Oscar Wilde</footer>
+                                    </blockquote>
+                                </div>
+                                <!--/ review #4 -->
+                                <!-- review #5 -->
+                                <div class="item text-center pt5">
+                                    <blockquote class="nm">
+                                        <p>But feelings can't be ignored, no matter how unjust or ungrateful they seem.</p>
+                                        <footer class="text-white"> Anne Frank, The Diary of a Young Girl</footer>
+                                    </blockquote>
+                                </div>
+                                <!--/ review #5 -->
+                            </div>
+                            <!--/ example 1 -->
+                        </div>
+                        <!--/ END row -->
+                    </div>
+                </div>
+            </section>
+            <!--/ END Testimonials section + jumbotron -->
+
+            <!-- START To Top Scroller -->
+            <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+            <!--/ END To Top Scroller -->
+        </section>
+        <!--/ END Template Main -->
+
+        <!-- START Template Footer -->
+        <footer id="footer" role="contentinfo" class="pt0">
+
+            <!-- bottom footer -->
+            <div class="footer-bottom mt0">
+                <!-- container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- copyright -->
+                            <p class="nm text-muted">&copy; Copyright 2014 by <a href="javascript:void(0);" class="text-white">Crushlike</a>. All Rights Reserved.</p>
+                            <!--/ copyright -->
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a href="javascript:void(0);" class="text-white">Privacy Policy</a>
+                            <span class="ml5 mr5">&#8226;</span>
+                            <a href="javascript:void(0);" class="text-white">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+                <!--/ container -->
+            </div>
+            <!--/ bottom footer -->
+        </footer>
+</div>
+        <script type="text/javascript">
+            // Carousel
+            // ================================
+            $("#customer-reviews").owlCarousel({
+                singleItem: true,
+                autoPlay: true,
+                autoHeight : true
+            });
+        </script>
+
+<% end %>

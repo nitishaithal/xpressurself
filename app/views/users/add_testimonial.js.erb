@@ -1,0 +1,5 @@
+$("#testimonials_block").html("<%= j render partial: 'users/testimonials' %>");
+$(".testimonials_count").html("<%= @testimonials.count %>");
+$("#testimonial_submit").button('reset');
+$("#testimonial_modal").modal('hide');
+$('.content_text').val('');

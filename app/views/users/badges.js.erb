@@ -1,0 +1,4 @@
+$("#badges_block").html("<%= j render partial: 'users/badges' %>");
+$(".badges_count").html("<%= @badges_count %>");
+$("#badges_submit").button('reset');
+$("#badges_modal").modal('hide');

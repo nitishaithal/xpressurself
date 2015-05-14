@@ -1,0 +1,37 @@
+                <div class="row" id="shuffle-grid">
+                    <% unless @user.pictures.nil? %>
+                    <% @user.pictures.each do |pic| %>
+                    <div class="col-md-4 " >
+                        <!-- thumbnail -->
+                        <div class="thumbnail">
+                            <!-- media -->
+                            <div class="media">
+                                <!-- indicator -->
+                                <div class="indicator"><span class="spinner"></span></div>
+                                <!--/ indicator -->
+                                <!-- toolbar overlay -->
+                                <div class="overlay">
+                                    <div class="toolbar">
+                                        <a href="'<%= cloudinary_url(pic, :crop => :fill) %>'" class="btn btn-default magnific" title="view picture"><i class="ico-search"></i></a>
+                                        <a href="#" class="btn btn-default" title="love this picture"><i class="ico-heart6"></i></a>
+                                        <a href="#" class="btn btn-default" title="Delete"><i class="ico-close"></i></a>
+                                    </div>
+                                </div>
+                                <!--/ toolbar overlay -->
+                                <!-- meta -->
+                                <span class="meta bottom darken">
+                                    <h5 class="nm semibold">
+                                        background1.jpg <br/>
+                                        <small><i class="ico-calendar2"></i> 2014-01-02</small>
+                                    </h5>
+                                </span>
+                                <!--/ meta -->
+                                <img data-toggle="unveil" src="/assets/background/400x400/placeholder.jpg" data-src="<%= cloudinary_url(pic, :width => 175, :height => 200, :crop => :fill) %>" alt="Photo" width="100%" />
+                            </div>
+                            <!--/ media -->
+                        </div>
+                        <!--/ thumbnail -->
+                    </div>
+                    <% end %>
+                    <% end %>
+                </div>

@@ -1,0 +1,362 @@
+<% provide(:title, @user.name) %>
+                      <!-- content -->                      
+                         <div class="row">
+                          
+                         <!-- main col left --> 
+                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                           
+                              <!-- START Widget Panel -->
+                         <div class="widget panel">
+
+                           <!-- panel ribbon -->
+
+                            <% if @like %>
+                              <a href='/users/<%= @user.uuid %>/likes' class='like panel-ribbon-60 panel-ribbon panel-ribbon-teal pull-right' data-remote='true'><i class='ico-heart icon-white icon-font-22'></i></a>
+                            <% else %>
+                              <a href='/users/<%= @user.uuid %>/likes' class='like panel-ribbon-60 panel-ribbon panel-ribbon-teal pull-right' data-remote='true'><i class='ico-heart icon-red icon-font-22'></i></a>
+                            <% end %>
+                                                         
+                          <!--/ panel ribbon -->
+
+                            <!-- Thumbnail -->
+                            <div class="thumbnail">
+                                <!-- media -->
+                                <div class="media">
+                                  <div class="media default_pic" id="default_pic">
+                                    <img src='<%= cloudinary_url( @user.default_pic, :width => 340, :height => 400, :crop => :fill, :gravity => :faces) %>' width='100%'>
+                                  </div>
+                                </div>
+                                <!--/ media -->
+                            </div>
+                            <!--/ Thumbnail -->
+                             <!-- meta -->
+                                    <span class="meta bottom">
+                                        <h4 class="semibold mt10 text-center"><%= @user.name %>
+                                        </h4>
+                                    </span>
+                            <!--/ meta -->
+                            <% unless @user.status.nil? %>
+                            <!-- blockquote -->
+                            <div class="m10-p10">
+                                
+                                <blockquote class="mt5 text-center m0-p10">
+                                    <p class="font-15"   >
+                                      <a href="#" class="icon-black" ><%= @user.status %></a>
+                                    </p>
+                                </blockquote>
+                            </div>
+                            <!--/ blockquote -->
+                            <% end %>
+                            <!-- panel body -->
+                            <div class="panel-body">
+                                 <!-- Nav section -->
+                                <ul class="nav nav-section nav-justified">
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/like-red-lite.png" alt="" class="img-responsive center_block">
+                                            </h4>
+                                            <h4 class="nm mt5 likes_count"><%= @likes_count %></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/pagequality1x64.png" alt="" class="img-responsive center_block">
+                                            </h4>
+                                            <h4 class="nm mt5 badges_count"><%= @badges_count %></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/seocopywriting1x64.png" alt="" class="img-responsive center_block"></h4>
+                                            <h4 class="nm mt5 testimonials_count"><%= @testimonials.blank? ? 0 : @testimonials.count %></h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--/ Nav section -->
+                                <div class="panel panel-minimal nm">
+          
+                                      <!-- START Bio -->
+                                      <div class="panel-toolbar-wrapper hidden-md hidden-lg">
+                                          <div class="panel-toolbar">
+                                              <h5 class="semibold nm text-info"><i class="ico-info2 mr5"></i>About me</h5>
+                                          </div>
+                                      </div>
+                                      <div class="panel-body pt0  hidden-md hidden-lg">
+                                          <p class="semibold mb5 icon-black">
+                                            <a href="#"  class="icon-black"><%= current_user.about_me %></a>
+                                          </p>
+                                          
+                                      </div>
+                                      <!--/ END Bio -->
+                                  </div>
+                            </div>
+                            <!--/ panel body -->
+                        </div>
+                        <!--/ END Widget Panel -->
+
+                              <div class="panel panel-teal overflow-hidden">
+                                                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">My pictures</h3>
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  <hr class="nm"><!-- horizontal line -->
+                                   <div class="images_div" href="#">
+                                    <%= render 'users/pics_grid' %>
+                                  </div>
+                                  
+                              </div>
+                          
+                          </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                              <!-- START panel -->
+                              <div class="panel panel-teal">
+                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Others think me as</h3>
+                                      <!-- panel toolbar -->
+                                      <div class="panel-toolbar text-right">
+                                          <!-- option -->
+                                              
+                                          <div class="option">
+                                              <button class="btn demo a-color-inherit" >
+                                                <a  href="#testimonial_modal" role="button" data-toggle="modal"class="">
+                                                  <i class="ico-plus-circle"></i>
+                                                </a>              
+                                              </button>              
+                                          </div>
+                                          <!--/ option -->
+                                      </div>
+                                      <!--/ panel toolbar -->
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  
+                                  <!-- panel body with collapse capable -->
+                                  <div class="panel-collapse pull out">
+                                      <div class="panel-body" id="testimonials_block">
+                                        <%= render partial: "users/testimonials", :locals => {:user => @user} %>                                                 
+                                      </div>
+                                  </div>
+                                  <!--/ panel body with collapse capabale -->
+
+                                  <!-- Loading indicator -->
+                                  <div class="indicator"><span class="spinner"></span></div>
+                                  <!--/ Loading indicator -->
+                              </div>
+                              <!--/ END panel -->
+
+                              <!-- START panel -->
+                              <div class="panel panel-teal">
+                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Places</h3>
+                                      <!-- panel toolbar -->
+                                      <div class="panel-toolbar text-right">
+                                          <!-- option -->
+                                              
+                                          <div class="option">
+                                              <button class="btn demo a-color-inherit" >
+                                                <a  href="#address_modal" role="button" data-toggle="modal"class="">
+                                                  <i class="ico-plus-circle"></i>
+                                                </a>              
+                                              </button>              
+                                          </div>
+                                          <!--/ option -->
+                                      </div>
+                                      <!--/ panel toolbar -->
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  
+                                  <!-- panel body with collapse capable -->
+                                  <div class="panel-collapse pull out">
+                                      <div class="panel-body">
+                                          <%= render partial: "users/places", :locals => {:user => @user} %>
+                                      </div>
+                                  </div>
+                                  <!--/ panel body with collapse capabale -->
+
+                                  <!-- Loading indicator -->
+                                  <div class="indicator"><span class="spinner"></span></div>
+                                  <!--/ Loading indicator -->
+                              </div>
+                              <!--/ END panel -->
+
+                              <!-- START panel -->
+                              <div class="panel panel-teal">
+                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Badges</h3>
+                                      <!-- panel toolbar -->
+                                      <div class="panel-toolbar text-right">
+                                          <!-- option -->
+                                              
+                                          <div class="option">
+                                              <button class="btn demo a-color-inherit" >
+                                                <a  href="#badges_modal" role="button" data-toggle="modal"class="">
+                                                  <i class="ico-plus-circle"></i>
+                                                </a>              
+                                              </button>              
+                                          </div>
+                                          <!--/ option -->
+                                      </div>
+                                      <!--/ panel toolbar -->
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  
+                                  <!-- panel body with collapse capable -->
+                                  <div class="panel-collapse pull out">
+                                      <div class="panel-body" id="badges_block">
+                                          <%= render partial: "users/badges", :locals => {:user => @user} %>
+                                      </div>
+                                  </div>
+                                  <!--/ panel body with collapse capabale -->
+
+                                  <!-- Loading indicator -->
+                                  <div class="indicator"><span class="spinner"></span></div>
+                                  <!--/ Loading indicator -->
+                              </div>
+                              <!--/ END panel -->
+
+                          </div>
+
+                          <!-- Right Side / Bottom side -->
+                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                        <div class="panel panel-minimal nm">
+                          <% unless @user.about_me.blank? %>
+                            <!-- START Bio -->
+                            <div class="panel-toolbar-wrapper hidden-sm hidden-xs ">
+                                <div class="panel-toolbar">
+                                    <h5 class="semibold nm text-info"><i class="ico-info2 mr5"></i>About me</h5>
+                                </div>
+                            </div>
+                            <div class="panel-body pt0 hidden-sm hidden-xs">
+                                <p class="semibold mb5 icon-black">
+                                    <%= @user.about_me %>
+                                </p>
+                            </div>
+                            <!--/ END Bio -->
+
+                            <hr class="hidden-sm hidden-xs"><!--horizontal line -->
+
+                            <% end %> 
+                            <!-- START Friend lists -->
+                            <div class="panel-toolbar-wrapper">
+                                <div class="panel-toolbar">
+                                    <h5 class="semibold nm text-info"><i class="ico-users3 mr5"></i>Recent visitors</h5>
+                                </div>
+                            </div>
+                            <div class="panel-body pt0">
+                                <div class="media-list media-list-contact">
+                                      <% @visit_rels = @user.rels(dir: :incoming, type: "visits")  %>
+                                      <% if @visit_rels.count > 0 %>
+                                        <% @visit_rels.each do |rel| %>
+                                          <a href="/users/<%= rel.from_node.uuid %>/" class="media">
+                                              <span class="media-object pull-left">
+                                                  <img src='<%= cloudinary_url( rel.from_node.default_pic, :width => 50, :height => 50, :crop => :fill, :gravity => :faces) %>' class="img-circle" alt="">
+                                              </span>
+                                              <span class="media-body">
+                                                  <span class="media-heading"><%= rel.from_node.name %></span>
+                                                  <span class="media-meta"><%= timeago_tag rel.updated_at, :nojs => true, :limit => 10.days.ago %></span>
+                                              </span>
+                                          </a>
+                                        <% end %>
+                                      <% else %>
+                                        <p  class="nm">None</p>
+                                      <% end %>
+                                </div>
+                                <p class="nm dis-none-imp"><a href="javascript:void(0);" class="semibold">View all</a></p>
+                            </div>
+                            <!--/ END Friend lists -->
+                        </div>
+                    </div>
+                    <!--/ Right side / bottom side -->
+
+                       </div>
+                  <!--/row-->
+
+
+<!-- badges modal-->
+<%= form_for([:badges, current_user] , remote: true)  do %>
+<div id="badges_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      Give badges
+      </div>
+      <div class="modal-body">
+          <!-- <form class="form center-block"> -->
+          <%= hidden_field_tag "user_id", "#{@user.uuid}"  %>
+          <div class="form-group">
+            <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'hot', true , @my_badges.include?('hot')  %> Hot</h5>
+              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'smart', true , @my_badges.include?('smart') %> Smart</h5>
+              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'macho', true , @my_badges.include?('macho') %> Macho</h5>
+              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'moody', true , @my_badges.include?('moody') %> Moody</h5>
+              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'kind', true , @my_badges.include?('kind') %> Kind</h5>
+              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag 'stingy', true , @my_badges.include?('stingy') %> Stingy</h5>
+
+            </div>
+          <!-- </form> -->
+      </div>
+      <div class="modal-footer">
+          <div>
+          <%= submit_tag "Save", class: "btn btn-primary btn-sm", 'aria-hidden'=>"true", id: "badges_submit" %> 
+          
+          </div>  
+      </div>
+  </div>
+</div>
+</div>
+<% end %>
+
+
+<!--Testimonial modal-->
+<%= form_for([:add_testimonial, @user] , remote: true)  do %>
+<div id="testimonial_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      What you think about this person
+      </div>
+      <div class="modal-body">
+          <!-- <form class="form center-block"> -->
+            <div class="form-group">
+            <%= text_area_tag :testimonial, nil, :placeholder => "Write testimonial", :size => 75, class: 'form-control input-lg content_text' %>
+            </div>
+          <!-- </form> -->
+      </div>
+      <div class="modal-footer">
+          <div>
+          <%= submit_tag "Add", class: "btn btn-primary btn-sm", 'aria-hidden'=>"true", id: "testimonial_submit" %> 
+          
+      </div>  
+      </div>
+  </div>
+</div>
+</div>
+<% end %>
+
+
+<script>
+      $("[data-toggle~=unveil]").unveil(200, function () {
+                    $(this).load(function () {
+                        $(this).addClass("unveiled");
+                    });
+                });
+
+        $(".like").click(function(){
+          if ($(this).children("i").hasClass( "icon-red" )) {
+            $(this).children("i").removeClass("icon-red");
+            $(this).children("i").addClass("icon-white");
+          } else{
+            $(this).children("i").addClass("icon-red");
+            $(this).children("i").removeClass("icon-white");
+          };
+        });
+
+</script>

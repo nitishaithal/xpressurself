@@ -1,0 +1,507 @@
+                      <!-- content -->                      
+                        <div class="row">
+                          
+                         <!-- main col left --> 
+                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                           
+                              <!-- START Widget Panel -->
+                         <div class="widget panel">
+                            <!-- Thumbnail -->
+                            <div class="thumbnail">
+                                <!-- media -->
+                                <div class="media default_pic" id="default_pic">
+                                    <%= render  'users/default_pic' %>
+                                </div>
+                                <!--/ media -->
+                            </div>
+                            <!--/ Thumbnail -->
+                             <!-- meta -->
+                                    <span class="meta bottom">
+                                        <h4 class="semibold mt10 text-center"><%= current_user.name %>
+                                        </h4>
+                                    </span>
+                            <!--/ meta -->
+                            <!-- blockquote -->
+                            <div class="m10-p10">
+                                
+                                <blockquote class="mt5 text-center m0-p10">
+                                    <p class="font-15"   >
+                                      <a href="#" id="xe_status" data-type="textarea" data-pk="1" class="icon-black" ><%= current_user.status %></a>
+                                    </p>
+                                </blockquote>
+                            </div>
+                                <!--/ blockquote -->
+                            <!-- panel body -->
+                            <div class="panel-body">
+                                 <!-- Nav section -->
+                                <ul class="nav nav-section nav-justified">
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/like-red-lite.png" alt="" class="img-responsive center_block">
+                                            </h4>
+                                            <h4 class="nm mt5"><%= current_user.rels(dir: :incoming, type: "likes").count %></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/pagequality1x64.png" alt="" class="img-responsive center_block">
+                                            </h4>
+                                            <h4 class="nm mt5"><%= current_user.rels(dir: :incoming, type: "badges").count %></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/seocopywriting1x64.png" alt="" class="img-responsive center_block"></h4>
+                                            <h4 class="nm mt5"><%= @testimonials.nil? ? 0 : @testimonials.count %></h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--/ Nav section -->
+                                  <div class="panel panel-minimal nm">
+          
+                                      <!-- START Bio -->
+                                      <div class="panel-toolbar-wrapper hidden-md hidden-lg">
+                                          <div class="panel-toolbar">
+                                              <h5 class="semibold nm text-info"><i class="ico-info2 mr5"></i>About me</h5>
+                                          </div>
+                                      </div>
+                                      <div class="panel-body pt0  hidden-md hidden-lg">
+                                          <p class="semibold mb5 icon-black">
+                                            <a href="#" id="xe_about_me" data-type="textarea" data-pk="1" class="icon-black"><%= current_user.about_me %></a>
+                                          </p>
+                                          
+                                      </div>
+                                      <!--/ END Bio -->
+                                  </div>
+                            </div>
+                            <!--/ panel body -->
+                        </div>
+                        <!--/ END Widget Panel -->
+                        
+                        
+
+                              <div class="panel panel-teal overflow-hidden">
+                                                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">My pictures</h3>
+                                      <!-- panel toolbar -->
+                                      <div class="panel-toolbar text-right">
+                                           <!-- option -->
+                                              
+                                          <div class="option">
+                                              <button class="btn demo a-color-inherit" >
+                                                <a  href="#pics_modal" role="button" data-toggle="modal" class="" id="pics_link">
+                                                  <i class="ico-pencil"></i>
+                                                </a> 
+                                                <a  href="#profile_pic_modal" role="button" data-toggle="modal" class="">
+                                                  <i class="ico-upload2"></i>
+                                                </a>              
+                                              </button>              
+                                          </div>
+                                          <!--/ option -->
+                                      </div>
+                                      <!--/ panel toolbar -->
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  <hr class="nm"><!-- horizontal line -->
+                                  <div class="images_div" href="#">
+                                    <%= render 'users/pics_grid' %>
+                                  </div>
+                              </div>
+                          
+                          </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                              <!-- START panel -->
+                              <div class="panel panel-teal">
+                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Others think me as</h3>
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  
+                                  <!-- panel body with collapse capable -->
+                                  <div class="panel-collapse pull out">
+                                      <div class="panel-body">
+                                                 <%= render partial: "users/testimonials", :locals => {:user => current_user} %> 
+                                                 
+                                      </div>
+                                  </div>
+                                  <!--/ panel body with collapse capabale -->
+
+                                  <!-- Loading indicator -->
+                                  <div class="indicator"><span class="spinner"></span></div>
+                                  <!--/ Loading indicator -->
+                              </div>
+                              <!--/ END panel -->
+
+                              <!-- START panel -->
+                              <div class="panel panel-teal">
+                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Places</h3>
+                                      <!-- panel toolbar -->
+                                      <div class="panel-toolbar text-right">
+                                          <!-- option -->
+                                              
+                                          <div class="option">
+                                              <button class="btn demo a-color-inherit" >
+                                                <a  href="#address_modal" role="button" data-toggle="modal" class="" id="address_link">
+                                                  <i class="ico-plus-circle"></i>
+                                                </a>              
+                                              </button>              
+                                          </div>
+                                          <!--/ option -->
+                                      </div>
+                                      <!--/ panel toolbar -->
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  
+                                  <!-- panel body with collapse capable -->
+                                  <div class="panel-collapse pull out">
+                                      <div class="panel-body" id="places_block">
+                                          <%= render partial: "users/places", :locals => {:user => current_user} %>
+                                      </div>
+                                  </div>
+                                  <!--/ panel body with collapse capabale -->
+
+                                  <!-- Loading indicator -->
+                                  <div class="indicator"><span class="spinner"></span></div>
+                                  <!--/ Loading indicator -->
+                              </div>
+                              <!--/ END panel -->
+
+                              <!-- START panel -->
+                              <div class="panel panel-teal">
+                                  <!-- panel heading/header -->
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Badges</h3>
+                                      
+                                  </div>
+                                  <!--/ panel heading/header -->
+                                  
+                                  <!-- panel body with collapse capable -->
+                                  <div class="panel-collapse pull out">
+                                      <div class="panel-body">
+                                          <%= render partial: "users/badges", :locals => {:user => current_user} %>
+                                      </div>
+                                  </div>
+                                  <!--/ panel body with collapse capabale -->
+
+                                  <!-- Loading indicator -->
+                                  <div class="indicator"><span class="spinner"></span></div>
+                                  <!--/ Loading indicator -->
+                              </div>
+                              <!--/ END panel -->
+
+                          </div>
+
+                          <!-- Right Side / Bottom side -->
+                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                        <div class="panel panel-minimal nm">
+
+                            <!-- START Bio -->
+                            <div class="panel-toolbar-wrapper hidden-sm hidden-xs">
+                                <div class="panel-toolbar">
+                                    <h5 class="semibold nm text-info"><i class="ico-info2 mr5"></i>About me</h5>
+                                </div>
+                            </div>
+                            <div class="panel-body pt0 pl0 pr0 hidden-sm hidden-xs">
+                                <p class="semibold mb5 icon-black">
+                                  <a href="#" id="xe_about_me" data-type="textarea" data-pk="1" class="icon-black"><%= current_user.about_me %></a>
+                                </p>
+                                
+                            </div>
+                            <!--/ END Bio -->
+
+                            <hr class="hidden-sm hidden-xs"><!--horizontal line -->
+
+                            <!-- START Friend lists -->
+                            <div class="panel-toolbar-wrapper">
+                                <div class="panel-toolbar">
+                                    <h5 class="semibold nm text-info"><i class="ico-users3 mr5"></i>Recent visitors</h5>
+                                </div>
+                            </div>
+                            <div class="panel-body pt0">
+                                <div class="media-list media-list-contact">
+                                      <% @visit_rels = current_user.rels(dir: :incoming, type: "visits")  %>
+                                      <% if @visit_rels.count > 0 %>
+                                        <% @visit_rels.each do |rel| %>
+                                          <a href="/users/<%= rel.from_node.uuid %>/" class="media">
+                                              <span class="media-object pull-left">
+                                                  <img src='<%= cloudinary_url( rel.from_node.default_pic, :width => 50, :height => 50, :crop => :fill, :gravity => :faces) %>' class="img-circle" alt="">
+                                              </span>
+                                              <span class="media-body">
+                                                  <span class="media-heading"><%= rel.from_node.name %></span>
+                                                  <span class="media-meta"><%= timeago_tag rel.updated_at, :nojs => true, :limit => 10.days.ago %></span>
+                                              </span>
+                                          </a>
+                                        <% end %>
+                                      <% else %>
+                                        <p  class="nm">None</p>
+                                      <% end %>
+                                </div>
+                                <p class="nm dis-none-imp"><a href="javascript:void(0);" class="semibold">View all</a></p>
+                            </div>
+                            <!--/ END Friend lists -->
+                        </div>
+                    </div>
+                    <!--/ Right side / bottom side -->
+
+                       </div>
+          <!--/row-->
+
+<!--post modal-->
+<%= form_for(current_user, url: "users/#{current_user.uuid}/add_location", remote: true)  do %>
+<div id="address_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      Add places to find people around it
+      </div>
+      <div class="modal-body">
+          <!-- <form class="form center-block"> -->
+            <div class="form-group">
+            <%= text_area_tag :address, nil, :placeholder => "Search for your workplace/school/residence... ", :size => 75, class: 'form-control input-lg autocomplete', 'data-autocomplete' => autocomplete_location_address_users_path , 'autofocus' => '', 'data-autocomplete-label'=>"Sorry, nothing found.", 'data-auto-focus'=>'true' %>
+            </div>
+          <!-- </form> -->
+      </div>
+      <div class="modal-footer">
+          <div>
+          <%= submit_tag "Add", class: "btn btn-primary btn-sm", 'aria-hidden'=>"true", id: "address_submit" %> 
+          
+            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+      </div>  
+      </div>
+  </div>
+</div>
+</div>
+<% end %>
+
+<%= form_for(current_user , url: "users/#{current_user.uuid}/add_picture", remote: true)  do %>
+<div id="profile_pic_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      Upload profile picture
+      </div>
+      <div class="modal-body">
+          <!-- <form class="form center-block"> -->
+            <div class="fileupload fileupload-new text-center" data-provides="fileupload">
+              <span class="btn btn-primary btn-file">
+                <span class="fileupload-new">Select a file</span>
+                <span class="form-group upload_form"></span>
+              </span>
+            </div>
+          <!-- </form> -->
+            <div class="thumbnails  text-center" >
+            </div>
+            <div class="dis-none-imp">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" >
+                       <span class="sr-only"></span>
+                    </div>
+                </div>
+            </div>
+            
+      </div>
+      <div class="dis-none-imp">
+        <%= text_field_tag 'pic' %>
+      </div>
+      <div class="modal-footer">
+          <div>
+            <%= submit_tag "Submit", class: "btn btn-primary btn-sm disabled", 'aria-hidden'=>"true", id: "picture_submit" %> 
+          </div>  
+      </div>
+  </div>
+</div>
+</div>
+<% end %>
+
+<div id="pics_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      Profile pictures (set visiblity / set default picture)
+      </div>
+      <div class="modal-body" id="pics_modal_body">
+              <div class="indicator"><span class="spinner" /></div>
+      </div>
+
+      <div class="modal-footer">
+          <div>
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary btn-sm" id="close_pics_modal">Close</button> 
+          </div>  
+      </div>
+  </div>
+</div>
+</div>
+<div class="dis-none-imp">
+  <% unless @pictures.nil? %>
+      <% @pictures.each do |pic| %>
+        <a href="<%= cloudinary_url(pic, :crop => :fill) %>" class="btn btn-default profile_pics" title="view picture">1</a>
+      <% end %>
+  <% end %>
+</div>
+<script>
+ 
+         $(".profile_pics").magnificPopup({
+              type: "image",
+              gallery: {
+                  enabled: true
+              }
+          });
+
+$('#pics_link').click(function(){
+  $("#pics_modal_body").empty();
+  $("#pics_modal_body").html("<h4 class='text-center'> Loading... </h4>");
+  $.getScript( "users/<%= current_user.uuid %>/pics_edit");
+});
+
+$.cloudinary.config('cloud_name', 'rashi');
+$('.upload_form').append($.cloudinary.unsigned_upload_tag("shyhero", 
+  { cloud_name: 'rashi', tags: 'uploads' }, 
+    { multiple: false }
+  ).bind('cloudinarydone', function(e, data) {
+    $('.thumbnails').append($.cloudinary.image(data.result.public_id, 
+      { format: 'jpg', width: 175, height: 250, 
+        crop: 'fill', gravity: 'faces', effect: 'saturation:50' } ));
+    $('#pic').val(data.result.public_id);
+    $('#picture_submit').removeClass("disabled");
+  }).bind('cloudinaryprogress', function(e, data) { 
+    $('.progress').parent().removeClass('dis-none-imp');
+    $('.fileupload').hide();
+    $('.progress-bar').css('width', 
+      Math.round((data.loaded * 100.0) / data.total) + '%'); 
+        if( Math.round((data.loaded * 100.0) / data.total) == 100){
+          $('.progress').parent().addClass('dis-none-imp');
+        }
+  }));
+
+  $('.upload_field').unsigned_cloudinary_upload("shyhero", 
+    { cloud_name: 'rashi', tags: 'uploads' }, 
+    { multiple: false }
+  ).bind('cloudinarydone', function(e, data) {
+
+    $('.thumbnails').append($.cloudinary.image(data.result.public_id, 
+      { format: 'jpg', width: 150, height: 100, 
+        crop: 'thumb', gravity: 'face', effect: 'saturation:50' } ))}
+
+  ).bind('cloudinaryprogress', function(e, data) { 
+
+    $('.progress_bar').css('width', 
+      Math.round((data.loaded * 100.0) / data.total) + '%'); 
+
+  });
+
+
+      $("[data-toggle~=unveil]").unveil(200, function () {
+                    $(this).load(function () {
+                        $(this).addClass("unveiled");
+                    });
+                });
+
+       $('.autocomplete').autocomplete({
+        minLength: 3,
+        source: function(request, response) {
+          return $.ajax({
+            url: $('.autocomplete').data('autocomplete'),
+            dataType: "json",
+            data: {
+              address: request.term
+            },
+            success: function(data) {
+              return response(data);
+            }
+          });
+        }
+      });
+
+$("#address_submit").click(function(){
+  $(this).removeClass("btn-sm");
+  $(this).addClass("disabled");
+});
+
+
+    //turn to inline mode
+$.fn.editable.defaults.mode = 'inline';
+
+    // user status - xeditable
+    // ================================
+
+    $("#xe_status").editable({
+        title: "Enter status",
+           rows: 5,
+           url: '/users/<%= current_user.uuid %>/update_status', 
+           ajaxOptions: {
+               dataType: 'json' //assuming json response
+           },           
+           success: function(data, config) {
+               if(data && data.id) {  //record created, response like {"id": 2}
+                   //set pk
+                    //$(this).editable('option', 'pk', data.id);
+                   //remove unsaved class
+                   $(this).removeClass('editable-unsaved');
+                   //show messages
+                  // var msg = 'Updated successfully.';
+                  // $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
+                   $('#save-btn').hide(); 
+                   $(this).off('save.newuser');                     
+               } else if(data && data.errors){ 
+                   //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                   config.error.call(this, data.errors);
+               }               
+           },
+           error: function(errors) {
+               var msg = '';
+               if(errors && errors.responseText) { //ajax error, errors = xhr object
+                   msg = errors.responseText;
+               } else { //validation error (client-side or server-side)
+                   $.each(errors, function(k, v) { msg += k+": "+v+"<br>"; });
+               } 
+               $('#msg').removeClass('alert-success').addClass('alert-error').html(msg).show();
+           }
+       });
+
+     $("#xe_about_me").editable({
+        title: "Enter status",
+           rows: 5,
+           url: '/users/<%= current_user.uuid %>/update_about_me', 
+           ajaxOptions: {
+               dataType: 'json' //assuming json response
+           },           
+           success: function(data, config) {
+               if(data && data.id) {  //record created, response like {"id": 2}
+                   //set pk
+                    //$(this).editable('option', 'pk', data.id);
+                   //remove unsaved class
+                   $(this).removeClass('editable-unsaved');
+                   //show messages
+                  // var msg = 'Updated successfully.';
+                  // $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
+                   $('#save-btn').hide(); 
+                   $(this).off('save.newuser');                     
+               } else if(data && data.errors){ 
+                   //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                   config.error.call(this, data.errors);
+               }               
+           },
+           error: function(errors) {
+               var msg = '';
+               if(errors && errors.responseText) { //ajax error, errors = xhr object
+                   msg = errors.responseText;
+               } else { //validation error (client-side or server-side)
+                   $.each(errors, function(k, v) { msg += k+": "+v+"<br>"; });
+               } 
+               $('#msg').removeClass('alert-success').addClass('alert-error').html(msg).show();
+           }
+       });
+
+
+</script>

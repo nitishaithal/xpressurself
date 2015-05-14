@@ -1,0 +1,62 @@
+<div class="row shuffle-grid" id="shuffle-grid">
+                    <% unless @pictures.nil? %>
+                    <% @pictures.each do |pic| %>
+                    <div class="col-md-4 shuffle" data-groups='["user<%= @user.uuid %>"]' data-date-created="" data-title="<%= pic %>">
+                        <!-- thumbnail -->
+                        <div class="thumbnail">
+                            <!-- media -->
+                            <div class="media">
+                                <!-- indicator -->
+                                <div class="indicator"><span class="spinner"></span></div>
+                                <!--/ indicator -->
+                                <!-- toolbar overlay -->
+                                <div class="overlay">
+                                    <div class="toolbar">
+                                        <a href="#" class="btn btn-default set_visible" title="pictures visible to others">
+                                            <% if @user.visible_pictures.include?(pic)  %>
+                                            <i class="ico-checkmark-circle2 icon-green"></i>
+                                            <% else %>
+                                            <i class="ico-checkmark-circle2"></i>
+                                            <% end %>
+                                        </a>
+                                        <p class="dis-none-imp"><%= pic %></p>
+                                        <a href="#" class="btn btn-default set_default" title="Set as default picture" >
+                                            <% if pic == @user.default_pic  %>
+                                            <i class="ico-heart icon-red"></i>
+                                            <% else %>
+                                            <i class="ico-heart icon-silver"></i>
+                                            <% end %>
+                                        </a>
+                                        <a href="#" class="btn btn-default delete_pic dis-none-imp" title="Delete"><i class="ico-close"></i></a>
+                                    </div>
+                                </div>
+                                <!--/ toolbar overlay -->
+                                <img data-toggle="unveil" src="/assets/background/400x400/placeholder.jpg" data-src="<%= cloudinary_url(pic, :width => 175, :height => 200, :crop => :fill) %>" alt="Photo" width="100%" />
+                            </div>
+                            <!--/ media -->
+                        </div>
+                        <!--/ thumbnail -->
+                    </div>
+                    <% end %>
+                    <% end %>
+</div>
+<script>
+
+      $(".set_default").click(function(){
+            $(".set_default").html("<i class='ico-heart icon-silver'></i>");
+            $(this).html("<i class='ico-heart icon-red'></i>");
+            var pic = $(this).prev('p').html();
+            $.getScript("users/<%= @user.uuid %>/set_default_pic?default_pic="+pic);
+        });
+        $(".set_visible").click(function(){
+            var pic = $(this).next('p').html();
+            if($(this).children('i').hasClass('icon-green')){
+                $(this).children('i').removeClass('icon-green');
+                $.getScript("users/<%= @user.uuid %>/set_visible_pic?visible_pic="+pic+"&status=false");
+            }else{
+                $(this).children('i').addClass('icon-green');
+                $.getScript("users/<%= @user.uuid %>/set_visible_pic?visible_pic="+pic+"&status=true");
+            }
+        });
+
+</script>

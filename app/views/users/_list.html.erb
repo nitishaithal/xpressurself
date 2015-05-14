@@ -1,0 +1,97 @@
+      <div class="paginate_do">
+              <% @friends.each do |friend| %> 
+              <% if friend.uuid == current_user.uuid %>
+                <% next %>
+              <% end %>
+               <div class="col-xs-12 col-md-6 col-lg-4">
+                <!-- START Widget Panel -->
+                        <div class="widget panel">
+                          <!-- panel ribbon -->
+                            <a href="javascript:void(0);" class="panel-ribbon panel-ribbon-primary"><i class="ico-info"></i></a>
+                          <!--/ panel ribbon -->
+                          <!-- panel ribbon -->
+                            <% @like = current_user.rels(dir: :outgoing, type: :likes, between: friend).blank? ? true : false %>
+
+                            <% if @like %>
+                              <a href='/users/<%= friend.uuid %>/likes' class='panel-ribbon-60 panel-ribbon panel-ribbon-teal pull-right' data-remote='true'><i class='ico-heart icon-white icon-font-22'></i></a>
+                            <% else %>
+                              <a href='/users/<%= friend.uuid %>/likes' class='panel-ribbon-60 panel-ribbon panel-ribbon-teal pull-right' data-remote='true'><i class='ico-heart icon-red icon-font-22'></i></a>
+                            <% end %>
+                                                         
+                          <!--/ panel ribbon -->
+
+                            <!-- Thumbnail -->
+                            <div class="thumbnail">
+                                <!-- media -->
+                                <div class="media">
+                                    <a href="/users/<%= friend.uuid %>/">
+                                    <img src="<%= facebook.get_picture(friend.uid,:type => "square", height: 400 , width: 400) %>" height="100%">
+                                  </a>
+                                </div>
+                                <!--/ media -->
+                            </div>
+                            <!--/ Thumbnail -->
+                             <!-- meta -->
+                                    <span class="meta bottom">
+                                        <h4 class="semibold mt10 text-center"><%= friend.name %></h4>
+                                    </span>
+                            <!--/ meta -->
+                            <!-- blockquote -->
+                            <% unless friend.status.nil? %>
+                            <div class="m10-p10">
+                                <blockquote class="mt5 text-muted text-center m0-p10">
+                                    <p class="font-15 icon-black"><%= friend.status %></p>
+                                </blockquote>
+                            </div>
+                            <% end %>
+                                <!--/ blockquote -->
+                            <!-- panel body -->
+                            <div class="panel-body">
+                                 <!-- Nav section -->
+                                <ul class="nav nav-section nav-justified">
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm">
+                                              <img src="/assets/icons/like-red-lite.png" alt="" class="img-responsive center_block">
+                                            </h4>
+                                            <h4 class="nm mt5"><%= friend.rels(dir: :incoming, type: "likes").count %></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm"><img src="/assets/icons/pagequality1x64.png" alt="" class="img-responsive center_block"></h4>
+                                            <h4 class="nm mt5"><%= friend.rels(dir: :incoming, type: "badges").count %></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section">
+                                            <h4 class="nm"><img src="/assets/icons/seocopywriting1x64.png" alt="" class="img-responsive center_block"></h4>
+                                            <h4 class="nm mt5">
+                                              <% @tm = friend.rels(dir: :incoming, type: "testimonials") %>
+                                              <%= @tm.nil? ? 0 : @tm.count %>
+                                            </h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--/ Nav section -->
+                            </div>
+                            <!--/ panel body -->
+                        </div>
+                        <!--/ END Widget Panel -->
+          <!--/row-->
+                  </div>
+                <% end %>      
+      </div>
+
+      <script type="text/javascript">
+        $(".panel-ribbon").click(function(){
+          if ($(this).children("i").hasClass( "icon-red" )) {
+            $(this).children("i").removeClass("icon-red");
+            $(this).children("i").addClass("icon-white");
+          } else{
+            $(this).children("i").addClass("icon-red");
+            $(this).children("i").removeClass("icon-white");
+          };
+        });
+
+      </script>

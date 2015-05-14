@@ -1,0 +1,11 @@
+ <% if user.places.count > 0 %>
+ <div class="list-group">
+    <% user.places.each do |loc| %>
+        <a href="#" class="list-group-item">
+            <%= loc.address %>
+        </a>
+    <% end %>
+ </div>
+ <% else %>
+ 	No places added, please add to find people around it
+ <% end %>

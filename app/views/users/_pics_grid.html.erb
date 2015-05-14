@@ -1,0 +1,185 @@
+<% if @pictures.count == 1 %>
+<!-- START Gridster -->
+<div class="img-grid">
+  <ul class="list-unstyled row">
+    <li class="col-xs-12">
+     <!-- Thumbnail -->
+     <div class="thumbnail">
+      <!-- media -->
+      <div class="media" style="height:310px;">
+        <!-- indicator -->
+        <div class="indicator"><span class="spinner" /></div>
+        <!--/ indicator -->
+        <img data-toggle="unveil" src="/assets/background/250x400/placeholder.jpg" data-src="<%= cloudinary_url(@pictures[0], :width => 400, :height => 400, :crop => :fill, :gravity => :faces) %>" alt="Photo" width="100%"   />
+      </div>
+      <!--/ media -->
+    </div>
+    <!--/ Thumbnail -->
+  </li>
+</ul>
+</div>
+<!--/ END Gridster -->
+
+<% elsif @pictures.count == 2 %>
+<!-- START Gridster -->
+<div class="img-grid">
+  <ul class="list-unstyled row">
+    <li class="col-xs-6">
+     <!-- Thumbnail -->
+     <div class="thumbnail">
+      <!-- media -->
+      <div class="media" style="height:310px;">
+        <!-- indicator -->
+        <div class="indicator"><span class="spinner" /></div>
+        <!--/ indicator -->
+        <img data-toggle="unveil" src="/assets/background/250x400/placeholder.jpg" data-src="<%= cloudinary_url(@pictures[0], :width => 235, :height => 320, :crop => :fill, :gravity => :faces) %>" alt="Photo" height="100%"  width="100%" />
+      </div>
+      <!--/ media -->
+    </div>
+    <!--/ Thumbnail -->
+  </li>
+  <li class="col-xs-6">
+     <!-- Thumbnail -->
+     <div class="thumbnail">
+      <!-- media -->
+      <div class="media" style="height:310px;">
+        <!-- indicator -->
+        <div class="indicator"><span class="spinner" /></div>
+        <!--/ indicator -->
+        <img data-toggle="unveil" src="/assets/background/250x400/placeholder.jpg" data-src="<%= cloudinary_url(@pictures[1], :width => 235, :height => 320, :crop => :fill, :gravity => :faces) %>" alt="Photo" height="100%"  width="100%" />
+      </div>
+      <!--/ media -->
+    </div>
+    <!--/ Thumbnail -->
+  </li>
+</ul>
+</div>
+<!--/ END Gridster -->
+<% elsif @pictures.count == 3 %>
+<!-- START Gridster -->
+<div class="img-grid">
+  <ul class="list-unstyled row">
+    <li class="col-xs-8">
+     <!-- Thumbnail -->
+     <div class="thumbnail">
+      <!-- media -->
+      <div class="media" style="height:310px;">
+        <!-- indicator -->
+        <div class="indicator"><span class="spinner" /></div>
+        <!--/ indicator -->
+        <img data-toggle="unveil" src="/assets/background/250x400/placeholder.jpg" data-src="<%= cloudinary_url(@pictures[0], :width => 235, :height => 320, :crop => :fill, :gravity => :faces) %>" alt="Photo" height="100%"  width="100%" />
+      </div>
+      <!--/ media -->
+    </div>
+    <!--/ Thumbnail -->
+  </li>
+  <li class="col-xs-4">
+    <ul class="list-unstyled row">
+      <li class="col-xs-12">
+        <!-- thumbnail -->
+        <div class="thumbnail">
+          <!-- media -->
+          <div class="media" style="height:150px;">
+            <!-- indicator -->
+            <div class="indicator"><span class="spinner"></span></div>
+            <!--/ indicator -->
+            <img src="<%= cloudinary_url(@pictures[1], :width => 110, :height => 155, :crop => :fill, :gravity => :faces) %>" alt="Photo" />
+          </div>
+          <!--/ media -->
+        </div>
+        <!--/ thumbnail -->
+      </li>
+    </ul>
+    <ul class="list-unstyled row">
+      <li class="col-xs-12">
+        <!-- thumbnail -->
+        <div class="thumbnail">
+          <!-- media -->
+          <div class="media" style="height:150px;">
+            <!-- indicator -->
+            <div class="indicator"><span class="spinner"></span></div>
+            <!--/ indicator -->
+            <img src="<%= cloudinary_url(@pictures[2], :width => 110, :height => 155, :crop => :fill, :gravity => :faces) %>" alt="Photo" />
+          </div>
+          <!--/ media -->
+        </div>
+        <!--/ thumbnail -->
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+<!--/ END Gridster -->
+<% else %>
+<% n = @pictures.count %>
+<!-- START Gridster -->
+<div class="img-grid">
+  <ul class="list-unstyled row">
+    <li class="col-xs-8">
+     <!-- Thumbnail -->
+     <div class="thumbnail">
+      <!-- media -->
+      <div class="media" style="height:310px;">
+        <!-- indicator -->
+        <div class="indicator"><span class="spinner" /></div>
+        <!--/ indicator -->
+        <img data-toggle="unveil" src="/assets/background/250x400/placeholder.jpg" data-src="<%= cloudinary_url(@pictures[n-1], :width => 235, :height => 320, :crop => :fill, :gravity => :faces ) %>" alt="Photo" width="100%"   />
+      </div>
+      <!--/ media -->
+    </div>
+    <!--/ Thumbnail -->
+  </li>
+  <li class="col-xs-4">
+    <ul class="list-unstyled row">
+      <li class="col-xs-12">
+        <!-- thumbnail -->
+        <div class="thumbnail">
+          <!-- media -->
+          <div class="media" style="height:100px;">
+            <!-- indicator -->
+            <div class="indicator"><span class="spinner"></span></div>
+            <!--/ indicator -->
+            <img src="<%= cloudinary_url(@pictures[n-2], :width => 110, :height => 100, :crop => :fill, :gravity => :faces) %>" alt="Photo" width="100%" />
+          </div>
+          <!--/ media -->
+        </div>
+        <!--/ thumbnail -->
+      </li>
+    </ul>
+    <ul class="list-unstyled row">
+      <li class="col-xs-12">
+        <!-- thumbnail -->
+        <div class="thumbnail">
+          <!-- media -->
+          <div class="media" style="height:100px;">
+            <!-- indicator -->
+            <div class="indicator"><span class="spinner"></span></div>
+            <!--/ indicator -->
+            <img src="<%= cloudinary_url(@pictures[n-3], :width => 110, :height => 100, :crop => :fill, :gravity => :faces) %>" alt="Photo" width="100%" />
+          </div>
+          <!--/ media -->
+        </div>
+        <!--/ thumbnail -->
+      </li>
+    </ul>
+    <ul class="list-unstyled row">
+      <li class="col-xs-12">
+        <!-- thumbnail -->
+        <div class="thumbnail">
+          <!-- media -->
+          <div class="media" style="height:100px;">
+            <!-- indicator -->
+            <div class="indicator"><span class="spinner"></span></div>
+            <!--/ indicator -->
+            <img src="<%= cloudinary_url(@pictures[n-4], :width => 110, :height => 100, :crop => :fill, :gravity => :faces) %>" alt="Photo" width="100%" />
+          </div>
+          <!--/ media -->
+        </div>
+        <!--/ thumbnail -->
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+<!--/ END Gridster -->
+<% end %>

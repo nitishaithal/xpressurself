@@ -1,0 +1,900 @@
+
+<!-- saved from url=(0084)https://raw.githubusercontent.com/achalbi/EMS/master/app/views/events/_show.html.erb -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>function raiseEvent_(b,a,e){var f=document.getElementById(b);var d=document.createEvent("KeyboardEvent");var c=97;if(a){c=a}Object.defineProperty(d,"keyCode",{get:function(){return this.keyCodeVal}});Object.defineProperty(d,"which",{get:function(){return this.keyCodeVal}});if(d.initKeyboardEvent){d.initKeyboardEvent(e,true,true,document.defaultView,false,false,false,false,c,c)}else{d.initKeyEvent(e,true,true,document.defaultView,false,false,false,false,c,0)}d.keyCodeVal=c;if(d.keyCode!==c){}f.dispatchEvent(d)}</script><script>function qpr_post_message(d,c){var b;if(d==""){b=top}else{var a=document.getElementById(d);if(!a||!a.contentWindow){return}b=a.contentWindow}b.postMessage(c,"*")}</script><script>function qpr_inject_content_script(g,e){var c=document.getElementById(g);if(!c||!c.contentDocument){return}var d=c.contentDocument;var a=0;function b(){a++;f()}function f(){if(a==e.length){var i={source:"QuillpadRoaming",message:"rememberActiveElement",iframeID:g};qpr_post_message(g,JSON.stringify(i));return}var h=d.createElement("script");h.type="text/javascript";h.onload=b;h.src=e[a];d.head.appendChild(h)}f()}</script><script>function qprRaiseDropEvent_(a,h,f){var e=document.elementFromPoint(a,h);function c(i){var j="";switch(i.code){case FileError.QUOTA_EXCEEDED_ERR:j="QUOTA_EXCEEDED_ERR";break;case FileError.NOT_FOUND_ERR:j="NOT_FOUND_ERR";break;case FileError.SECURITY_ERR:j="SECURITY_ERR";break;case FileError.INVALID_MODIFICATION_ERR:j="INVALID_MODIFICATION_ERR";break;case FileError.INVALID_STATE_ERR:j="INVALID_STATE_ERR";break;default:j="Unknown Error";break}}var b=document.createEvent("HTMLEvents");b.initEvent("drop",true,true);var g={source:"QuillpadRoaming",message:"showInputPopup",type:"DragNotification",popupMessage:"Previews on some sites may look incomplete, but the complete image will be posted"};window.postMessage(JSON.stringify(g),"*");function d(i){i.root.getFile("tmp.png",{},function(j){j.file(function(l){b.dataTransfer={};b.dataTransfer.files=[l];for(var k=0;k<1;k++){e.dispatchEvent(b);e=e.parentNode;if(!e){break}}},c)},c)}window.requestFileSystem=window.requestFileSystem||window.webkitRequestFileSystem;window.requestFileSystem(window.TEMPORARY,1024*1024,d,c)}</script><style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -90px !important;
+    width: 180px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">&lt;% provide(:title, @event.title) %&gt;
+&lt;% provide(:page_image, @event.photo.pic_url) %&gt;
+&lt;% unless signed_in? %&gt;
+    &lt;br&gt; 
+    &lt;br&gt; 
+    &lt;br&gt; 
+    &lt;br&gt; 
+    &lt;br&gt; 
+&lt;% end %&gt;
+&lt;div class=""&gt;
+      &lt;div  class="image_overlay tr-hover-btn" &gt;
+&lt;!--  
+             &lt;h4 class="pull-left" style="margin-left:10px;font-size:18px;"&gt;
+             &lt;div id="albumLink"&gt;
+              &lt;%= link_to @event.title, @event, class:"albumLink", remote: true %&gt;
+              &lt;/div&gt;
+            &lt;/h4&gt;
+               --&gt;
+              &lt;% unless @event.responded?(current_user) %&gt;
+                &lt;div class="text_overlay_cu_cover_pic button_toggle_pic" style=" margin-bottom:250px;height:60px;padding:0;margin-top:0;"&gt;
+                    &lt;span class="pull-right "&gt; &amp;nbsp;&lt;/span&gt;
+                  &lt;address style="width:874px !important;"&gt;&lt;p  style="width:100% !important;"&gt;&lt;strong style="line-height:1.8"&gt;Attend this event&lt;/strong&gt;
+                    &lt;span class="pull-right "&gt; &amp;nbsp;&lt;/span&gt;
+                    &lt;%= link_to "May be", "/events/#{@event.id}/event_invitation?status=maybe", class: "uibutton pull-right button_toggle_pic event_inv", remote: true %&gt;
+                    &lt;span class="pull-right "&gt; &amp;nbsp;&lt;/span&gt;
+                    &lt;%= link_to "No", "/events/#{@event.id}/event_invitation?status=no", class: "uibutton pull-right button_toggle_pic event_inv marginRight5", remote: true %&gt;
+                    &lt;span class="pull-right "&gt; &amp;nbsp;&lt;/span&gt;
+                    &lt;%= link_to "Yes", "/events/#{@event.id}/event_invitation?status=yes", class: "uibutton pull-right button_toggle_pic event_inv ", remote: true %&gt;
+                  &lt;/p&gt;&lt;/address&gt;
+                &lt;/div&gt;
+              &lt;% end %&gt;
+            &lt;% unless @event.photo.nil? %&gt;
+           &lt;%= link_to cl_image_tag(@event.photo.pic_url(:largest), class:"padding1",rel: "#{@event.id}", id:"#{@event.photo.id}") , @event.photo.pic_url, class: "fancybox-album", rel: "#{@event.id}" , title: "#{@event.title}"    %&gt;
+            &lt;% end %&gt;
+            &lt;div class="btn_overlay_cu_cover_pic"&gt;
+              &lt;div id="edit_del_btn"&gt;
+                &lt;% if @event.responded?(current_user) %&gt;
+                  &lt;% if @event.is_admin?(current_user) %&gt;
+                       &lt;button class=" pull-right uibutton icon edit button_toggle_pic " id="edit_event"&gt;edit&lt;/button&gt;
+                   &lt;% end %&gt;
+
+                   &lt;span class="pull-right "&gt; &amp;nbsp;&lt;/span&gt;
+                   &lt;% if @event.is_admin?(current_user) %&gt;
+                      &lt;%= link_to "delete",  @event, method: :delete, remote: true,
+                                               data: { confirm: "You sure?" },
+                                               class: "pull-right uibutton button_toggle_pic",
+                                               title: "Delete this event" %&gt;
+                   &lt;% end %&gt;
+                  &lt;span class="pull-right "&gt; &amp;nbsp;&lt;/span&gt;
+                &lt;% end %&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;h2 class="text_overlay_cover_pic button_toggle_pic"&gt;
+              &lt;%= render partial: "events/text_overlay", locals: {obj: @event} %&gt;
+            &lt;/h2&gt;
+        &lt;/div&gt;
+  &lt;aside class="span6" style="margin-left:10px;"&gt;
+    &lt;section&gt;
+
+
+    &lt;/section&gt;
+    &lt;section id="activity_span" style="background-color:#e5e5e5;padding:10px;" class="well"&gt;
+      &lt;h2 id="act_h"&gt;&lt;span  class="pull-left" style="margin-left:10px;font-size:13px;"&gt;&lt;strong&gt;Event&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;
+      &lt;span style="clear:both"&gt;&lt;/span&gt;
+      &lt;div id="event_link"&gt;    
+          &lt;li class="sidetabs sidetabs_selected" style="list-style-type: none;padding:5px; margin:5px;"&gt;
+                &lt;h6&gt;&lt;%= link_to  @event.title, @event, id: "act_#{@event.id}", remote: true %&gt;&lt;/h6&gt;
+          &lt;/li&gt;
+          &lt;%= link_to "", @event, remote: true %&gt;
+      &lt;/div&gt;
+      &lt;h2 id="act_h"&gt;&lt;span  class="pull-left" style="margin-left:10px;font-size:13px;line-height:2;"&gt;&lt;strong&gt;Sub-event&lt;/strong&gt;&lt;/span&gt;
+      &lt;% if @event.responded?(current_user) %&gt;
+       &lt;%= link_to "add", '#', id: "create_activity",  class: " pull-right uibutton icon add",:title =&gt; "Add Activity" %&gt;
+      &lt;% end %&gt;
+     &lt;/h2&gt;
+      &lt;span style="clear:both"&gt;&lt;/span&gt;
+      &lt;div id="event_activities"&gt;    
+          &lt;%= render @activities %&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+      
+   &lt;/aside&gt;
+&lt;div class="center loading_page active_hide" &gt;&lt;img src="/assets/loading.gif"&gt;&lt;/div&gt;
+
+&lt;div class="span13" style="margin-top:10px;"&gt;
+&lt;div id="event_list"&gt;
+  &lt;%= render partial: "events/event_links", locals: { event: @event, activity: @activity } %&gt;
+&lt;/div&gt;
+
+        &lt;div id="show_event_div"&gt;
+            &lt;%= render partial: "events/event_members", locals: { event: @event, activity: @activity, ad_users: @ad_users, inv_users: @inv_users } %&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;%= form_for( [@event.activities.build], remote: true,  :html =&gt; {id: "create_activity_form"}) do |f| %&gt;
+  &lt;div id="modal_create_activity" style="display:none" &gt;
+          &lt;div id="modal-from-dom" class="modal hide fade in" style="display: block;width:700px;"&gt;
+            &lt;div class="modal-header"&gt;
+              &lt;a href="#" id="closeX_create_activity" class="close"&gt;×&lt;/a&gt;
+              &lt;h3&gt;Create Sub-event&lt;/h3&gt;
+            &lt;/div&gt;
+              &lt;%= f.hidden_field :event_id, value: @event.id %&gt;
+            &lt;div class="modal-body" style="max-height:550px;"&gt;
+              &lt;div class="row"&gt;
+          &lt;div class="span14 ui-front"&gt;
+               &lt;%= render 'shared/error_messages', object: f.object %&gt;
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= f.label :title %&gt;
+                  &lt;div class="input"&gt;
+                    &lt;%= f.text_field :title, :placeholder=&gt;"Title", 'data-validation' =&gt; "length",
+     'data-validation-length' =&gt;"3-25", 'data-validation-error-msg' =&gt; "The Event name has to be a value between 3-25 characters" %&gt;&lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= label_tag :starts_at %&gt;
+                  &lt;div class="input"&gt;
+                  &lt;%= f.text_field :starts_at, :placeholder =&gt; "Time", value: @event.starts_at  %&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;a id="end_date_add_link_act" class="uibutton icon add"&gt;End Date&lt;/a&gt;
+                &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="center_block clearfix" id="end_date_act"&gt;
+                  &lt;%= label_tag :ends_at %&gt;
+                  &lt;div class="input"&gt;
+                    &lt;%= f.text_field :ends_at,  value: @event.ends_at  %&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                   &lt;a id="end_date_remove_link_act" class="uibutton icon prev"&gt;Remove&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt; 
+
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= f.label :location %&gt;
+                  &lt;div class="input "&gt;
+                  &lt;%= f.text_field :address, :placeholder =&gt; :location, :size =&gt; 43, class: 'events_with_autocomplete inherit_width', 'data-autocompleteUrl' =&gt; search_address_events_path , 'data-validation' =&gt; "length",
+     'data-validation-length' =&gt;"3-250", 'data-validation-error-msg' =&gt; "The event address has to be a value between 3-250 characters", value: @event.address %&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                
+                  &lt;%= link_to "View map", '#', id: "view_map_link_act",  class: "uibutton icon prev" %&gt;
+                &lt;/div&gt;
+                &lt;div class="input" id="view_map_act"&gt;
+                
+                &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= f.label :description %&gt;
+                  &lt;div class="input"&gt;
+                  &lt;%= f.text_area :description, :placeholder=&gt;"Description", class: ' inherit_width', :title=&gt;"Description", rows: 3, cols: 75, 'data-validation' =&gt; "length",
+     'data-validation-length' =&gt;"3-250", 'data-validation-error-msg' =&gt; "The event description has to be a value between 3-250 characters"  %&gt; 
+                &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= label_tag :privacy %&gt;
+                  &lt;div class="input"&gt;
+                    &lt;%= f.select :privacy, options_for_select([["Public", Privacyenum::PUBLIC], ["Private", Privacyenum::PRIVATE]]), {}, id: "activity_privacy_create" %&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;   
+           &lt;/div&gt;
+            &lt;div class="modal-footer" &gt;
+              &lt;%= f.submit "Create", class: "btn primary pull-right", id: "create_activity_act" %&gt;  
+            &lt;/div&gt;
+          &lt;/div&gt;
+          
+        &lt;/div&gt;
+&lt;% end %&gt;
+
+
+
+ &lt;%= form_for( @event, remote: true, :html =&gt; {:multipart =&gt; true, id: 'update_event_form'}) do |f| %&gt;
+&lt;div id="modal_edit_event" style="display:none;" &gt;
+          &lt;div id="modal-from-dom" class="modal hide fade in" style="display: block;width:700px;"&gt;
+            &lt;div class="modal-header"&gt;
+              &lt;a href="#" id="closeX_edit_event" class="close"&gt;×&lt;/a&gt;
+              &lt;h3&gt;Update Event&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body" style="max-height:450px;"&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="span14 ui-front"&gt;
+               &lt;%= render 'shared/error_messages', object: f.object %&gt;
+               &lt;div class="center_block clearfix"&gt;
+                  &lt;%= f.label :title %&gt;
+                  &lt;div class="input"&gt;
+                    &lt;%= f.text_field :title, :placeholder=&gt;"Title", 'data-validation' =&gt; "length",
+     'data-validation-length' =&gt;"3-25", 'data-validation-error-msg' =&gt; "The Event name has to be a value between 3-25 characters" %&gt;&lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= label_tag :starts_at %&gt;
+                  &lt;div class="input"&gt;
+                  &lt;%= f.text_field :starts_at, :placeholder =&gt; "Time" %&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;a id="end_date_add_link_event" class="uibutton icon add"&gt;End Date&lt;/a&gt;
+                &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="center_block clearfix" id="end_date_event"&gt;
+                  &lt;%= label_tag :ends_at %&gt;
+                  &lt;div class="input"&gt;
+                    &lt;%= f.text_field :ends_at %&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                   &lt;a id="end_date_remove_link_event" class="uibutton icon prev"&gt;Remove&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt; 
+
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= f.label :location %&gt;
+                  &lt;div class="input "&gt;
+                  &lt;%= f.text_field :address, :placeholder =&gt; :location, :size =&gt; 43, class: 'events_with_autocomplete inherit_width', 'data-autocompleteUrl' =&gt; search_address_events_path , 'data-validation' =&gt; "length",
+     'data-validation-length' =&gt;"3-250", 'data-validation-error-msg' =&gt; "The event address has to be a value between 3-250 characters" %&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                
+                  &lt;%= link_to "View map", '#', id: "view_map_link_event",  class: "uibutton icon prev active_hide" %&gt;
+                &lt;/div&gt;
+                &lt;div class="input" id="view_map"&gt;
+                
+                &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= f.label :description %&gt;
+                  &lt;div class="input"&gt;
+                  &lt;%= f.text_area :description, :placeholder=&gt;"Description", class: ' inherit_width', :title=&gt;"Description", rows: 3, cols: 75, 'data-validation' =&gt; "length",
+     'data-validation-length' =&gt;"3-250", 'data-validation-error-msg' =&gt; "The event description has to be a value between 3-250 characters"  %&gt; 
+                &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="center_block clearfix"&gt;
+                  &lt;%= label_tag :privacy %&gt;
+                  &lt;div class="input"&gt;
+                    &lt;%= f.select :privacy, options_for_select([["Public", Privacyenum::PUBLIC], ["Private", Privacyenum::PRIVATE]]) %&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt; &lt;br&gt;
+
+          &lt;div class="center_block clearfix"&gt;
+            &lt;%= label_tag "Change picture:" %&gt;
+            &lt;%= f.fields_for :photo, Photo.new, :child_index =&gt; 'NEW_RECORD' do |photo_form| %&gt;
+              &lt;%= photo_form.file_field :pic, id: "pic2",style: "width:0px; height:0px; padding:0px;  left:0px;" %&gt;  
+            &lt;% end %&gt;
+            &lt;div class="input"&gt; 
+              &lt;% unless @event.photo.nil? %&gt;
+              &lt;%= cl_image_tag(@event.photo.pic_url(:small), class:" thumbnail albumLink", id:"event_edit_pic", style: "cursor:pointer;") %&gt;   
+              &lt;% end %&gt;
+              &lt;canvas id="imageCanvas2" style = "border: 1px solid #ddd; padding:5px; align:center; width:200px;display:none;cursor:pointer" &gt;select new image&lt;/canvas&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;  
+
+        &lt;/div&gt;   
+      &lt;/div&gt;
+      &lt;/div&gt;
+            &lt;div class="modal-footer" &gt;
+              &lt;%= f.submit "Update", class: "btn primary pull-right", id: "update_event" %&gt;  
+            &lt;/div&gt;
+          &lt;/div&gt; 
+        &lt;/div&gt;
+  &lt;% end %&gt;
+
+&lt;/div&gt;
+
+
+&lt;script type="text/javascript"&gt;
+
+$(".sidetabs").click(function(){
+  $(".sidetabs").removeClass('sidetabs_selected');
+  $(this).addClass('sidetabs_selected');
+  $(this).next('a').click();
+  $('.loading_page').show();
+});
+
+$('#posts_events_li').click(function(){
+  $('#posts_events_li').addClass('active');
+  $('#activity_events_li').removeClass('active');
+  $('#photos_events_li').removeClass('active');
+  $('#posts_events').show();
+  $('#activity_events').hide();
+  $('#photos_events').hide();
+});
+$('#activity_events_li').click(function(){
+  $('#posts_events_li').removeClass('active');
+  $('#activity_events_li').addClass('active');
+  $('#photos_events_li').removeClass('active');
+  $('#posts_events').hide();
+  $('#activity_events').show();
+  $('#photos_events').hide();
+});
+$('#photos_events_li').click(function(){
+  $('#posts_events_li').removeClass('active');
+  $('#activity_events_li').removeClass('active');
+  $('#photos_events_li').addClass('active');
+  $('#posts_events').hide();
+  $('#activity_events').hide();
+  $('#photos_events').show();
+});
+
+/*     $('.tr-hover-btn').hover(function() {
+       $(this).find('.button_toggle_pic').show();
+       }, function() {
+         $(this).find('.button_toggle_pic').hide();
+    });*/
+
+$(document).ready(function(){
+  $("#upload_pics").show();
+  $('#activity_events').hide();
+  $('#photos_events').hide();
+
+  $('#end_date_act').hide();
+  $('#view_map_link_act').hide();
+
+  $('#modal_create_event').hide();
+  $(".modal-backdrop").remove();
+
+ $(document).ready(function(){
+                $.validate({
+                  form : '#create_activity_form',
+                  onSuccess : function() {
+                    $('#create_activity_act').attr('data-loading-text', 'Creating...');
+                    $('#create_activity_act').button('loading');
+                  },
+                });
+                $('.loading_page').hide();
+              });
+
+
+                  $("#create_activity").click(function(){
+                    $('#modal_create_activity').modal({
+                      //keyboard: true,
+                      backdrop: "static",
+                    });
+                  });
+                  $("#closeX_create_activity").click(function(){
+                        $('#modal_create_activity').modal('hide');
+                      });
+
+                  $('#end_date_add_link_act').click(function(){
+                    $('#end_date_act').show();
+                    $('#end_date_add_link_act').hide();
+                  });
+                  $('#end_date_remove_link_act').click(function(){
+                    $('#end_date_act').hide();
+                    $('#end_date_add_link_act').show();
+                  });
+
+});
+
+    $(function() {
+      return $('.events_with_autocomplete').autocomplete({
+        minLength: 2,
+        source: function(request, response) {
+          return $.ajax({
+            url: $('.events_with_autocomplete').data('autocompleteurl'),
+            dataType: "json",
+            data: {starts_at: "", ends_at: "",
+              address: request.term, event: "&lt;%= @event.to_json %&gt;"
+            },
+            success: function(data) {
+              return response(data);
+            }
+          });
+        }
+      });
+    });
+
+    
+
+
+
+var startDateTextBox = $("#activity_starts_at");
+var endDateTextBox = $("#activity_ends_at");
+
+
+      startDateTextBox.datetimepicker({ 
+        onClose: function(dateText, inst) {
+          if (endDateTextBox.val() != '') {
+            var testStartDate = startDateTextBox.datetimepicker('getDate');
+            var testEndDate = endDateTextBox.datetimepicker('getDate');
+            if (testStartDate &gt; testEndDate)
+              endDateTextBox.datetimepicker('setDate', testStartDate);
+          }
+          else {
+            endDateTextBox.val(dateText);
+          }
+        },
+        onSelect: function (selectedDateTime){
+          endDateTextBox.datetimepicker('option', 'minDate', startDateTextBox.datetimepicker('getDate') );
+        },
+        dateFormat: "dd/mm/yy"
+      });
+      endDateTextBox.datetimepicker({ 
+        onClose: function(dateText, inst) {
+          if (startDateTextBox.val() != '') {
+            var testStartDate = startDateTextBox.datetimepicker('getDate');
+            var testEndDate = endDateTextBox.datetimepicker('getDate');
+            if (testStartDate &gt; testEndDate)
+              startDateTextBox.datetimepicker('setDate', testEndDate);
+          }
+          else {
+            startDateTextBox.val(dateText);
+          }
+        },
+        onSelect: function (selectedDateTime){
+          startDateTextBox.datetimepicker('option', 'maxDate', endDateTextBox.datetimepicker('getDate') );
+        },
+        dateFormat: "dd/mm/yy"
+      });
+
+
+
+$('#activity_address').keydown(function(){
+    $('#view_map_link').hide();
+    $('#view_map').hide();
+});
+
+$('#view_map_link').click(function(){
+    var address = "/events/get_geo_coordinates?address="+$('#activity_address').val();
+    // $.get(address,"script");
+     $.ajax({
+      type: "GET",
+      url: address,
+      dataType: "script"
+    }); 
+});
+
+$('a.ui-corner-all').on("click", function(){
+  if($('#activity_address').val()!=""){
+    $('#view_map_link').show();
+  }else{
+    $('#view_map_link').hide();
+  }
+});
+
+
+$('#end_date_add_link').click(function(){
+  $('#end_date').show();
+  $('#end_date_add_link').hide();
+});
+$('#end_date_remove_link').click(function(){
+  $('#end_date').hide();
+  $('#end_date_add_link').show();
+});
+
+  $(function() {
+  $("#search_user").tokenInput("/events/&lt;%= @event.id %&gt;/search_selected_user", {
+    crossDomain: false,
+    prePopulate: $("#search_user").data("pre"),
+    theme: "facebook",
+        resultsFormatter: function(item){ return "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name + " " + ""+ "&lt;/div&gt;&lt;div class='email'&gt;" + item.email + "&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        tokenFormatter: function(item) { return  "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name +"&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        preventDuplicates: true ,
+        zindex: 11001,
+        hintText: "Type in a user name",
+  });
+});
+
+  $(function() {
+  $("#search_group").tokenInput("/events/&lt;%= @event.id %&gt;/search_selected_group", {
+    crossDomain: false,
+    prePopulate: $("#search_group").data("pre"),
+    theme: "facebook",
+        resultsFormatter: function(item){ return "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name + " " + ""+ "&lt;/div&gt;&lt;div class='email'&gt;" + item.description + "&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        tokenFormatter: function(item) { return  "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name +"&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        preventDuplicates: true ,
+        zindex: 11001,
+        hintText: "Type in a group name",
+  });
+});
+
+
+  $( "#activity_privacy" ).change(function () {
+    var str = "";
+    $("#activity_privacy option:selected" ).each(function() {
+      if($(this).text()=="Custom"){
+        $("#page_crt_ac-2").show();
+      }else{
+        $("#page_crt_ac-2").hide();
+      }
+    });
+  });
+
+/*
+  var imageLoader = document.getElementById('pic1');
+    imageLoader.addEventListener('change', handleImage, false);
+    $("#imageCanvas1").click(function(){
+        $("#pic1").click();
+    });
+        
+    var canvas = document.getElementById('imageCanvas1');
+    var ctx = canvas.getContext('2d');
+    ctx.font="30px Arial";
+    ctx.fillText("Select photos",10,50);
+
+  function handleImage(e){
+    var canvas = document.getElementById('imageCanvas1');
+    var ctx = canvas.getContext('2d');
+    var iCnt=0;
+    var files = e.target.files;
+    canvas.width = 600;
+    canvas.height = 155*(Math.ceil(files.length/4));
+    for( var i = 0, len = files.length; i &lt; len; i++) 
+          {
+          if(files[i])
+            {
+              var reader = new FileReader();
+              reader.onload = function(event){
+                var img = new Image();
+
+                img.onload = function(){
+                  var ratioPx = 150;
+                  var sWidth =ratioPx;
+                  var ratio = img.width/sWidth;
+                  var sHeight = img.height/ratio;   
+                    if(sHeight&gt;ratioPx){
+                       sHeight =ratioPx;
+                       ratio = img.height/sHeight;
+                       sWidth = img.width/ratio;  
+                    }
+                  ctx.drawImage(img, 155*(iCnt%4),155*(Math.floor(iCnt/4)),sWidth,sHeight);
+                  //ctx.drawImage(img,0,0,sWidth,sHeight);
+                  iCnt++;
+                }
+                img.src = event.target.result;
+              }
+              reader.readAsDataURL(e.target.files[i]);     
+            }
+          }
+  }
+
+
+  $("#upload_pics").click(function(){
+      $('#modal1').modal('show');
+    });
+    $("#closeX").click(function(){
+          $('#modal1').modal('hide');
+        });
+
+    $("#crtAlb").click(function(){
+          $('#modal1').modal('hide');
+        });
+
+*/
+
+
+//-------------edit event-------------------------
+
+
+$('#prev2-1').click(function(){
+    $( "#page2-1" ).animate({ width: '600px' }, 1000, function() {
+                $(this).show();
+             });
+    $( "#page2-2" ).animate({ width: '0px' }, 1000, function() {
+                $(this).hide();
+             });
+
+});
+$('#next2-2').click(function(){
+    $( "#page2-1" ).animate({ width: '0px' }, 1000, function() {
+                $(this).hide();
+             });
+    $( "#page2-2" ).animate({ width: '600px' }, 1000, function() {
+                $(this).show();
+             });
+});
+
+$('#event_address').keydown(function(){
+    $('#view_map_link2').hide();
+    $('#view_map2').hide();
+});
+
+$('#view_map_link2').click(function(){
+    var address = "/events/get_geo_coordinates?address="+$('#event_address').val();
+    // $.get(address,"script");
+     $.ajax({
+      type: "GET",
+      url: address,
+      dataType: "script"
+    }); 
+});
+
+$('a.ui-corner-all').on("click", function(){
+  if($('#event_address').val()!=""){
+    $('#view_map_link2').show();
+  }else{
+    $('#view_map_link2').hide();
+  }
+});
+
+
+$('#end_date_add_link2').click(function(){
+  $('#end_date2').show();
+  $('#end_date_add_link2').hide();
+});
+$('#end_date_remove_link2').click(function(){
+  $('#end_date2').hide();
+  $('#end_date_add_link2').show();
+});
+
+  $(function() {
+  $("#search_user_evt").tokenInput("/events/search_auto_user", {
+    crossDomain: false,
+   // prePopulate: $(".eventdetails_with_autocomplete").data("pre"),
+    theme: "facebook",
+        resultsFormatter: function(item){ return "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name + " " + ""+ "&lt;/div&gt;&lt;div class='email'&gt;" + item.email + "&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        tokenFormatter: function(item) { return  "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name +"&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        preventDuplicates: true ,
+        zindex: 11001,
+        hintText: "Type in a user name",
+  });
+});
+
+  $(function() {
+  $("#search_group_evt").tokenInput("/events/search_auto_group", {
+    crossDomain: false,
+   // prePopulate: $(".eventdetails_with_autocomplete").data("pre"),
+    theme: "facebook",
+        resultsFormatter: function(item){ return "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name + " " + ""+ "&lt;/div&gt;&lt;div class='email'&gt;" + item.description + "&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        tokenFormatter: function(item) { return  "&lt;li&gt;" + "&lt;img src='" + item.profile_pic + "' title='" + item.name + "' height='30px' width='30px' /&gt;" + "&lt;div style='display: inline-block; padding-left: 10px;'&gt;&lt;div class='full_name'&gt;" + item.name +"&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;" },
+        preventDuplicates: true ,
+        zindex: 11001,
+        hintText: "Type in a group name",
+  });
+});
+
+$(document).ready(function() {
+
+/*    $('#create_activity').hide();
+   
+    $('#activity_span').hover(function(){
+      $('#create_activity').toggle();
+      },function(){
+      $('#create_activity').toggle();
+    });*/
+
+  $('#page2-2').hide();
+
+  $('#view_map_link2').hide();
+  $('#end_date_add_link2').hide();
+
+    $("#event_pic").click(function(){
+      $('#event_pic').hide();
+      $('#pic2').click();
+      $('#imageCanvas2').show();
+    });
+
+
+    $(function() {
+      return $('.events_with_autocomplete').autocomplete({
+        minLength: 2,
+        source: function(request, response) {
+          return $.ajax({
+            url: $('.events_with_autocomplete').data('autocompleteurl'),
+            dataType: "json",
+            data: {starts_at: "", ends_at: "",
+              address: request.term, event: "&lt;%= @event.to_json %&gt;"
+            },
+            success: function(data) {
+              return response(data);
+            }
+          });
+        }
+      });
+    });
+
+    $(function() {
+      return $('.eventdetails_with_autocomplete').autocomplete({
+        minLength: 2,
+        source: function(request, response) {
+          return $.ajax({
+            url: "/events/search_user_group",
+            dataType: "json",
+            data: {starts_at: "", ends_at: "",
+              location: request.term
+            },
+            success: function(data) {
+              return response(data);
+            }
+          });
+        }
+      });
+    });
+
+
+
+});
+
+$(document).ready(function(){
+  $('#modal_create_activity').modal('hide');
+   $('.modal-backdrop').remove();
+  $.validate({
+    form : "#update_event_form",
+    onSuccess : function() {
+      $('#update_event').attr('data-loading-text', 'Updating...');
+      $('#update_event').button('loading');
+    },
+  });
+  $('.loading_page').hide();
+
+  $('#end_date_event').hide();
+
+  $('#view_map_link_event').hide();
+});
+
+
+                  $('#end_date_add_link_event').click(function(){
+                    $('#end_date_event').show();
+                    $('#end_date_add_link_event').hide();
+                  });
+                  $('#end_date_remove_link_event').click(function(){
+                    $('#end_date_event').hide();
+                    $('#end_date_add_link_event').show();
+                  });
+
+
+
+$("#edit_event").click(function(){
+      $('#modal_edit_event').modal({
+        backdrop: "static"
+      });
+    });
+    $("#closeX_edit_event").click(function(){
+          $('#modal_edit_event').modal('hide');
+        });
+
+    $("#update_event").click(function(){
+      $('.loading_page').show();
+        });
+
+    $("#event_edit_pic").click(function(){
+      $('#pic2').click();
+    });
+
+var imageLoader = document.getElementById('pic2');
+imageLoader.addEventListener('change', handleImage, false);
+$("#imageCanvas2").click(function(){
+  $("#pic2").click();
+});
+var canvas = document.getElementById('imageCanvas2');
+var ctx = canvas.getContext('2d');
+ctx.font="30px Arial";
+ctx.fillText("Change picture",10,50);
+
+function handleImage(e){
+  var canvas = document.getElementById('imageCanvas2');
+  var ctx = canvas.getContext('2d');
+  var iCnt=0;
+  var files = e.target.files;
+  canvas.width = 180;
+  canvas.height = 155*(Math.ceil(files.length/4));
+     if(files.length&lt;1){
+      $('#pic2').val('');
+      $('#event_edit_pic').show();
+      $('#imageCanvas2').hide();
+      return;
+    }
+  for( var i = 0, len = files.length; i &lt; len; i++) 
+  {
+          $('#event_edit_pic').hide();
+          $('#imageCanvas2').show();
+    if(files[i])
+    {
+      var reader = new FileReader();
+      reader.onload = function(event){
+        var img = new Image();
+
+        img.onload = function(){
+          var ratioPx = 150;
+          var sWidth =ratioPx;
+          var ratio = img.width/sWidth;
+          var sHeight = img.height/ratio;   
+          if(sHeight&gt;ratioPx){
+           sHeight =ratioPx;
+           ratio = img.height/sHeight;
+           sWidth = img.width/ratio;  
+         }
+         ctx.drawImage(img, 155*(iCnt%4),155*(Math.floor(iCnt/4)),sWidth,sHeight);
+                  //ctx.drawImage(img,0,0,sWidth,sHeight);
+                  iCnt++;
+                }
+                img.src = event.target.result;
+              }
+              reader.readAsDataURL(e.target.files[i]);     
+            }
+          }
+        }
+
+
+
+
+var currentPage = 1;
+var intervalID = -1000;
+var insideLoop ="false"; 
+ 
+function checkScroll_post() {
+   if (nearBottomOfPage() &amp;&amp; insideLoop!="true" ) {
+    insideLoop ="true";
+    currentPage++;
+  $('#loading_page').show();
+  if($('#activity_id').html() == null){
+      clearInterval(intervalID);
+      for (var i = 1; i &lt; 99999; i++){
+        window.clearInterval(i);
+      }
+      restartInterval();
+      insideLoop = "false";
+      return;
+    }
+    jQuery.ajax('/events/post_paginate?id='+$('#activity_id').html()+'&amp;event_id=&lt;%= @event.id %&gt;&amp;page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get', success: function(data, textStatus, jqXHR) {
+      $('#loading_page').hide();
+    if($(data).find('#posts_one_div').html()==null || $(data).find('#posts_one_div').html() == '' ){
+      clearInterval(intervalID);
+      for (var i = 1; i &lt; 99999; i++){
+        window.clearInterval(i);
+      }
+      restartInterval();
+    }else{
+      $('.resources&lt;%= @activity.id %&gt;').append(data);
+    }
+    insideLoop = "false";
+  },});
+  }
+}
+ 
+function nearBottomOfPage() {
+  return scrollDistanceFromBottom() &lt; 150;
+}
+ 
+function scrollDistanceFromBottom(argument) {
+  return pageHeight() - (window.pageYOffset + self.innerHeight);
+}
+ 
+function pageHeight() {
+  return Math.max(document.body.scrollHeight, document.body.offsetHeight);
+}
+ 
+$('document').ready(function(){
+  intervalID = setInterval(checkScroll_post, 250);
+});
+
+/*
+$('.pop_up').popover({
+    html: true,
+    trigger: 'manual',
+    placement: 'left',
+    delay: { hide: 500},
+    template: ' &lt;div class="popover"&gt;&lt;div class="pop_div"&gt;&lt;div class="arrow1" stlye="margin-right:10px;"&gt;&lt;/div&gt;&lt;div class="popover-inner"  &gt;&lt;h3 class="popover-title" &gt;&lt;/h3&gt;&lt;div class="popover-content" &gt;&lt;p&gt;&lt;/p&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;'
+});
+
+  $(".pop_up").hover(function(){
+      $(this).popover('show');        
+  },function(){
+      $(this).popover('hide');        
+  });
+*/
+
+var startDateTextBox = $("#event_starts_at");
+      var endDateTextBox = $("#event_ends_at");
+
+      startDateTextBox.datetimepicker({ 
+        onClose: function(dateText, inst) {
+          if (endDateTextBox.val() != '') {
+            var testStartDate = startDateTextBox.datetimepicker('getDate');
+            var testEndDate = endDateTextBox.datetimepicker('getDate');
+            if (testStartDate &gt; testEndDate)
+              endDateTextBox.datetimepicker('setDate', testStartDate);
+          }
+          else {
+            endDateTextBox.val(dateText);
+          }
+        },
+        onSelect: function (selectedDateTime){
+          endDateTextBox.datetimepicker('option', 'minDate', startDateTextBox.datetimepicker('getDate') );
+        },
+        dateFormat: "dd/mm/yy"
+      });
+      endDateTextBox.datetimepicker({ 
+        onClose: function(dateText, inst) {
+          if (startDateTextBox.val() != '') {
+            var testStartDate = startDateTextBox.datetimepicker('getDate');
+            var testEndDate = endDateTextBox.datetimepicker('getDate');
+            if (testStartDate &gt; testEndDate)
+              startDateTextBox.datetimepicker('setDate', testEndDate);
+          }
+          else {
+            startDateTextBox.val(dateText);
+          }
+        },
+        onSelect: function (selectedDateTime){
+          startDateTextBox.datetimepicker('option', 'maxDate', endDateTextBox.datetimepicker('getDate') );
+        },
+        dateFormat: "dd/mm/yy"
+      });
+
+
+&lt;/script&gt;
+</pre><div id="Quillpad-Roaming-extension-is-installed"></div><div id="textarea_simulator" style="position: absolute; top: 0px; left: 0px; visibility: hidden;"></div></body></html>
